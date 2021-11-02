@@ -11,6 +11,7 @@ namespace StudentData.Data
     {
         public class StudentDataContext : DbContext
         {
+
             public StudentDataContext(DbContextOptions<StudentDataContext> options) : base(options)
             {
             }
