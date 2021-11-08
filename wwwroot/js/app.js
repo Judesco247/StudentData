@@ -212,167 +212,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
@@ -884,185 +723,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _vm._m(0),
-    _vm._v(" "),
-    _c("div", { staticClass: "page-body" }, [
-      _c("div", { staticClass: "card" }, [
-        _c("form", [
-          _c("div", { staticClass: "card-body" }, [
-            _vm._m(1),
-            _vm._v(" "),
-            _vm._m(2),
-            _vm._v(" "),
-            _vm._m(3),
-            _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c(
-                "div",
-                { staticClass: "col-sm-4 col-md-4 col-xl-4 m-b-30" },
-                [
-                  _c("label", { staticClass: "form-label" }, [
-                    _vm._v("RECLASSIFICATION DATE"),
-                  ]),
-                  _vm._v(" "),
-                  _c("vuejsDatepicker", {
-                    attrs: {
-                      "input-class": "form-control",
-                      name: "reclassdate",
-                      type: "date",
-                    },
-                  }),
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-4 col-md-4 col-xl-4 m-b-30" }, [
-                _c("label", { staticClass: "form-label" }, [
-                  _vm._v("PURCHASE"),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "row" }, [
-                  _c(
-                    "div",
-                    { staticClass: "col-sm-6 col-md-6 col-xl-6" },
-                    [
-                      _c("label", { staticClass: "form-label" }, [
-                        _vm._v("DATE"),
-                      ]),
-                      _vm._v(" "),
-                      _c("vuejsDatepicker", {
-                        attrs: {
-                          "input-class": "form-control",
-                          name: "purchdate",
-                          type: "date",
-                        },
-                      }),
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _vm._m(4),
-                ]),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-4 col-md-4 col-xl-4 m-b-30" }, [
-                _c("label", { staticClass: "form-label" }, [
-                  _vm._v("INSURANCE"),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "row" }, [
-                  _c(
-                    "div",
-                    { staticClass: "col-sm-6 col-md-6 col-xl-6" },
-                    [
-                      _c("label", { staticClass: "form-label" }, [
-                        _vm._v("DATE"),
-                      ]),
-                      _vm._v(" "),
-                      _c("vuejsDatepicker", {
-                        attrs: {
-                          "input-class": "form-control",
-                          name: "insurdate",
-                          type: "date",
-                        },
-                      }),
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _vm._m(5),
-                ]),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c(
-                "div",
-                { staticClass: "col-sm-4 col-md-4 col-xl-4 m-b-30" },
-                [
-                  _c("label", { staticClass: "form-label" }, [
-                    _vm._v("LAST MOVEMENT DATE"),
-                  ]),
-                  _vm._v(" "),
-                  _c("vuejsDatepicker", {
-                    attrs: {
-                      "input-class": "form-control",
-                      name: "lastmovdate",
-                      type: "date",
-                    },
-                  }),
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-4 col-md-4 col-xl-4 m-b-30" }, [
-                _c("label", { staticClass: "form-label" }, [
-                  _vm._v("DISPOSAL"),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "row" }, [
-                  _c(
-                    "div",
-                    { staticClass: "col-sm-6 col-md-6 col-xl-6" },
-                    [
-                      _c("label", { staticClass: "form-label" }, [
-                        _vm._v("DATE"),
-                      ]),
-                      _vm._v(" "),
-                      _c("vuejsDatepicker", {
-                        attrs: {
-                          "input-class": "form-control",
-                          name: "dispdate",
-                          type: "date",
-                        },
-                      }),
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _vm._m(6),
-                ]),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-4 col-md-4 col-xl-4 m-b-30" }, [
-                _c("label", { staticClass: "form-label" }, [
-                  _vm._v("REVALUATION"),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "row" }, [
-                  _c(
-                    "div",
-                    { staticClass: "col-sm-6 col-md-6 col-xl-6" },
-                    [
-                      _c("label", { staticClass: "form-label" }, [
-                        _vm._v("DATE"),
-                      ]),
-                      _vm._v(" "),
-                      _c("vuejsDatepicker", {
-                        attrs: {
-                          "input-class": "form-control",
-                          name: "revaldate",
-                          type: "date",
-                        },
-                      }),
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _vm._m(7),
-                ]),
-              ]),
-            ]),
-            _vm._v(" "),
-            _vm._m(8),
-            _vm._v(" "),
-            _vm._m(9),
-          ]),
-        ]),
-      ]),
-    ]),
-  ])
+  return _vm._m(0)
 }
 var staticRenderFns = [
   function () {
@@ -1070,224 +731,108 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", [
-      _c("div", { staticClass: "page-wrapper" }, [
-        _c("div", { staticClass: "page-header" }, [
-          _c("div", { staticClass: "row align-items-end" }, [
-            _c("div", { staticClass: "col-lg-8" }, [
-              _c("div", { staticClass: "page-header-title" }, [
-                _c("div", { staticClass: "d-inline" }, [
-                  _c("h4", [_vm._v("NEW STUDENT REGISTRATION FORM")]),
+      _c("div", [
+        _c("div", { staticClass: "page-wrapper" }, [
+          _c("div", { staticClass: "page-header" }, [
+            _c("div", { staticClass: "row align-items-end" }, [
+              _c("div", { staticClass: "col-lg-8" }, [
+                _c("div", { staticClass: "page-header-title" }, [
+                  _c("div", { staticClass: "d-inline" }, [
+                    _c("h4", [_vm._v("NEW STUDENT REGISTRATION FORM")]),
+                  ]),
                 ]),
               ]),
             ]),
           ]),
         ]),
       ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-sm-3 col-md-3 col-xl-3" }, [
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { staticClass: "form-label" }, [_vm._v("ASSET CODE")]),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "form-control form-control-inverse",
-            attrs: { type: "text", name: "assetcode" },
-          }),
-        ]),
-      ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-sm-9 col-md-9 col-xl-9" }, [
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { staticClass: "form-label" }, [
-            _vm._v("ASSET DESCRIPTION"),
+      _c("div", { staticClass: "page-body" }, [
+        _c("div", { staticClass: "card" }, [
+          _c("form", [
+            _c("div", { staticClass: "card-body" }, [
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-sm-4 col-md-4 col-xl-4" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { staticClass: "form-label" }, [
+                      _vm._v("FIRST NAME"),
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      staticClass: "form-control form-control-inverse",
+                      attrs: { type: "text", name: "revalval" },
+                    }),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-4 col-md-4 col-xl-4" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { staticClass: "form-label" }, [
+                      _vm._v("SURNAME"),
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      staticClass: "form-control form-control-inverse",
+                      attrs: { type: "text", name: "revalval" },
+                    }),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-4 col-md-4 col-xl-4" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { staticClass: "form-label" }, [
+                      _vm._v("LAST NAME"),
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      staticClass: "form-control form-control-inverse",
+                      attrs: { type: "text", name: "revalval" },
+                    }),
+                  ]),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-sm-6 col-md-6 col-xl-6" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { staticClass: "form-label" }, [
+                      _vm._v("ADDRESS"),
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      staticClass: "form-control form-control-inverse",
+                      attrs: { type: "text", name: "revalval" },
+                    }),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-3 col-md-3 col-xl-3" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { staticClass: "form-label" }, [
+                      _vm._v("STATE of ORIGIN"),
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      staticClass: "form-control form-control-inverse",
+                      attrs: { type: "text", name: "revalval" },
+                    }),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-3 col-md-3 col-xl-3" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { staticClass: "form-label" }, [_vm._v("LGA")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      staticClass: "form-control form-control-inverse",
+                      attrs: { type: "text", name: "revalval" },
+                    }),
+                  ]),
+                ]),
+              ]),
+            ]),
           ]),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "form-control form-control-inverse",
-            attrs: { type: "text", name: "assetdesc" },
-          }),
         ]),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-sm-9 col-md-9 col-xl-9 m-b-30" }, [
-        _c("label", { staticClass: "form-label" }, [
-          _vm._v("ASSET CLASSIFICATION"),
-        ]),
-        _vm._v(" "),
-        _c(
-          "select",
-          {
-            staticClass: "form-control form-control-inverse",
-            attrs: { name: "assetclass" },
-          },
-          [_c("option")]
-        ),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-3 col-md-3 col-xl-3" }, [
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { staticClass: "form-label" }, [
-            _vm._v("DEPRECIATION RATE"),
-          ]),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "form-control form-control-inverse",
-            attrs: { type: "number", name: "deprate" },
-          }),
-        ]),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-sm-6 col-md-6 col-xl-6 m-b-30" }, [
-        _c("label", { staticClass: "form-label" }, [_vm._v("DEPARTMENT")]),
-        _vm._v(" "),
-        _c(
-          "select",
-          {
-            staticClass: "form-control form-control-inverse",
-            attrs: { name: "assetclass" },
-          },
-          [_c("option")]
-        ),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-6 col-md-6 col-xl-6 m-b-30" }, [
-        _c("label", { staticClass: "form-label" }, [_vm._v("BUSINESS LINE")]),
-        _vm._v(" "),
-        _c(
-          "select",
-          {
-            staticClass: "form-control form-control-inverse",
-            attrs: { name: "assetclass" },
-          },
-          [_c("option")]
-        ),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-6 col-md-6 col-xl-6" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { staticClass: "form-label" }, [_vm._v("VALUE")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control form-control-inverse",
-          attrs: { type: "number", name: "purchval" },
-        }),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-6 col-md-6 col-xl-6" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { staticClass: "form-label" }, [_vm._v("VALUE")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control form-control-inverse",
-          attrs: { type: "number", name: "insurdval" },
-        }),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-6 col-md-6 col-xl-6" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { staticClass: "form-label" }, [_vm._v("VALUE")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control form-control-inverse",
-          attrs: { type: "number", name: "dispval" },
-        }),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-6 col-md-6 col-xl-6" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { staticClass: "form-label" }, [_vm._v("VALUE")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control form-control-inverse",
-          attrs: { type: "number", name: "revalval" },
-        }),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-sm-4 col-md-4 col-xl-4 m-b-30" }, [
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { staticClass: "form-label" }, [
-            _vm._v("ACCUMULATED DEPRECIATION VALUE"),
-          ]),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "form-control form-control-inverse",
-            attrs: { type: "number", name: "accum_depval" },
-          }),
-        ]),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-6" }, [
-        _c(
-          "div",
-          {
-            staticClass: "btn-group mr-2 sw-btn-group-extra",
-            attrs: { role: "group" },
-          },
-          [
-            _c("button", {
-              staticClass: "btn btn-submit btn-primary",
-              attrs: { type: "submit" },
-            }),
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "btn-group mr-2 sw-btn-group-extra",
-            attrs: { role: "group" },
-          },
-          [_c("button", { staticClass: "btn btn-danger" }, [_vm._v("Cancel")])]
-        ),
       ]),
     ])
   },
