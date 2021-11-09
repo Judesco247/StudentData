@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StudentData.Data;
 
 namespace StudentData.Migrations
 {
     [DbContext(typeof(DBContext_Class.StudentDataContext))]
-    partial class StudentDataContextModelSnapshot : ModelSnapshot
+    [Migration("20211109131938_courses, departments and programs added")]
+    partial class coursesdepartmentsandprogramsadded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

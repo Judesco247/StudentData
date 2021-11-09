@@ -10,6 +10,8 @@ namespace StudentData.Models
     {
         [Key]
         public int Id { get; set; }
+        [StringLength(10)]
+        public string RegNumber { get; set; }
         [StringLength(20)]
         public string FirstName { get; set; }
         [StringLength(20)]
@@ -26,9 +28,9 @@ namespace StudentData.Models
         public string Religion { get; set; }
         public DateTime? DateOfBirth { get; set; }
 
-        public int PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
 
-        public int Alt_PhoneNumber { get; set; }
+        public string Alt_PhoneNumber { get; set; }
         public string Program { get; set; }
 
         public string Department { get; set; }

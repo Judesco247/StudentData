@@ -3,57 +3,23 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StudentData.Data;
 
 namespace StudentData.Migrations
 {
     [DbContext(typeof(DBContext_Class.StudentDataContext))]
-    partial class StudentDataContextModelSnapshot : ModelSnapshot
+    [Migration("20211109092812_State and Local govt changes")]
+    partial class StateandLocalgovtchanges
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.11")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("StudentData.Models.Courses", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("course_code")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("course_name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Courses");
-                });
-
-            modelBuilder.Entity("StudentData.Models.Departments", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("dept_code")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("dept_name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Departments");
-                });
 
             modelBuilder.Entity("StudentData.Models.LocalGovt", b =>
                 {
@@ -74,24 +40,6 @@ namespace StudentData.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("LocalGovt");
-                });
-
-            modelBuilder.Entity("StudentData.Models.Programs", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("prog_code")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("prog_name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Programs");
                 });
 
             modelBuilder.Entity("StudentData.Models.States", b =>
@@ -129,8 +77,8 @@ namespace StudentData.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("Alt_PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Alt_PhoneNumber")
+                        .HasColumnType("int");
 
                     b.Property<string>("Course")
                         .HasColumnType("nvarchar(max)");
@@ -156,8 +104,8 @@ namespace StudentData.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("PhoneNumber")
+                        .HasColumnType("int");
 
                     b.Property<string>("Program")
                         .HasColumnType("nvarchar(max)");

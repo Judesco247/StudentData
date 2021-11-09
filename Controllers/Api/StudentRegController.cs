@@ -9,8 +9,9 @@ using static StudentData.Data.DBContext_Class;
 
 namespace StudentData.Controllers.Api
 {
+
     [Route("api/[controller]")]
-    [ApiController]
+    [ApiController()]
     public class StudentRegController : ControllerBase
     {
         readonly StudentDataContext _studentDataContext;
@@ -20,21 +21,32 @@ namespace StudentData.Controllers.Api
             _studentDataContext = studentDataContext;
         }
 
-        public IActionResult Get()
+        // GET : /api/controller/getAllStudents
+        [Route("getAllStudents")]
+        [HttpGet]
+        public IActionResult GetAllStudents()
         {
             return Ok(_studentDataContext.StudentReg.ToList());
         }
 
-        public IActionResult Post(StudentReg studentReg)
+        // POST: api/controller/addnewstudent
+        [Route("addnewstudent")]
+        [HttpPost]
+        public IActionResult AddNewStudent([FromBody] StudentReg studentReg)
         {
             _studentDataContext.Add(studentReg);
             _studentDataContext.SaveChanges();
             return Ok();
         }
 
-        public IActionResult Put(StudentReg studentReg)
+        // PUT: api/controller/updateStudentinfo
+        [Route("updateStudentinfo")]
+        [HttpPut]
+        public IActionResult UpdateStudentInfo(StudentReg studentReg)
         {
             var StudentInDB = _studentDataContext.StudentReg.Find(studentReg.Id);
+
+            StudentInDB.RegNumber = studentReg.RegNumber;
             StudentInDB.FirstName = studentReg.FirstName;
             StudentInDB.Surname = studentReg.Surname;
             StudentInDB.LastName = studentReg.LastName;
@@ -42,7 +54,7 @@ namespace StudentData.Controllers.Api
             StudentInDB.StateOfOrigin = studentReg.StateOfOrigin;
             StudentInDB.LGA = studentReg.LGA;
             StudentInDB.Religion = studentReg.Religion;
-            StudentInDB.DateOfAdmission = studentReg.DateOfAdmission;
+            StudentInDB.DateOfBirth = studentReg.DateOfBirth;
             StudentInDB.PhoneNumber = studentReg.PhoneNumber;
             StudentInDB.Alt_PhoneNumber = studentReg.Alt_PhoneNumber;
             StudentInDB.Program = studentReg.Program;
@@ -55,6 +67,9 @@ namespace StudentData.Controllers.Api
             return Ok();
         }
 
+        //api/controller/Removestudent/id
+        [Route("Removestudent/{id:int}")]
+        [HttpGet]
         public IActionResult Delete(int id)
         {
             var StudenInDB = _studentDataContext.StudentReg.Find(id);
@@ -62,8 +77,9 @@ namespace StudentData.Controllers.Api
             _studentDataContext.SaveChanges();
             return Ok();
         }
-
-        public IActionResult Get(int id)
+        //api/controller/Getstudent/id
+        [Route("Getstudent/{id:int}")]
+        public IActionResult GetStudents(int id)
         {
             var StudentInDB = _studentDataContext.StudentReg.Find(id);
             return Ok(StudentInDB);
