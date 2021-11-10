@@ -327,10 +327,114 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     vuejsDatepicker: vuejs_datepicker__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      isFormVisible: false,
+      errors: [],
+      showCreateButton: true,
+      responseMessage: "",
+      CreateOrUpdate: "Create",
+      classList: null,
+      departments: null,
+      states: null,
+      lga: null,
+      course: null,
+      program: null,
+      objectBody: {
+        reg_no: "",
+        fname: "",
+        surname: "",
+        lname: "",
+        address: "",
+        state: "",
+        lga: "",
+        religion: "",
+        date_1: "",
+        phonenumber_1: "",
+        phonenumber_2: "",
+        program: "",
+        dept: "",
+        course: "",
+        date_2: ""
+      }
+    };
   }
 });
 
@@ -868,7 +972,7 @@ var render = function () {
                   _c("vuejsDatepicker", {
                     attrs: {
                       "input-class": "form-control",
-                      type: "date",
+                      type: "date_1",
                       name: "admissiondate",
                       required: "",
                       readonly: "",
@@ -901,7 +1005,7 @@ var render = function () {
                   _c("vuejsDatepicker", {
                     attrs: {
                       "input-class": "form-control",
-                      type: "date",
+                      type: "date_2",
                       name: "admissiondate",
                       required: "",
                       readonly: "",
@@ -917,6 +1021,8 @@ var render = function () {
         ]),
       ]),
     ]),
+    _vm._v(" "),
+    _vm._m(10),
   ])
 }
 var staticRenderFns = [
@@ -953,7 +1059,7 @@ var staticRenderFns = [
           _vm._v(" "),
           _c("input", {
             staticClass: "form-control form-control-inverse",
-            attrs: { type: "text", name: "fname" },
+            attrs: { type: "text", name: "reg_no" },
           }),
         ]),
       ]),
@@ -1066,7 +1172,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("input", {
           staticClass: "form-control form-control-inverse",
-          attrs: { type: "number", name: "phonenumber" },
+          attrs: { type: "number", name: "phonenumber_1" },
         }),
       ]),
     ])
@@ -1083,7 +1189,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("input", {
           staticClass: "form-control form-control-inverse",
-          attrs: { type: "number", name: "phonenumber" },
+          attrs: { type: "number", name: "phonenumber_2" },
         }),
       ]),
     ])
@@ -1098,7 +1204,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("input", {
           staticClass: "form-control form-control-inverse",
-          attrs: { type: "text", name: "religion" },
+          attrs: { type: "text", name: "program" },
         }),
       ]),
     ])
@@ -1113,7 +1219,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("input", {
           staticClass: "form-control form-control-inverse",
-          attrs: { type: "text", name: "religion" },
+          attrs: { type: "text", name: "dept" },
         }),
       ]),
     ])
@@ -1128,7 +1234,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("input", {
           staticClass: "form-control form-control-inverse",
-          attrs: { type: "text", name: "religion" },
+          attrs: { type: "text", name: "course" },
         }),
       ]),
     ])
@@ -1165,6 +1271,62 @@ var staticRenderFns = [
           },
           [_c("button", { staticClass: "btn btn-danger" }, [_vm._v("Cancel")])]
         ),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("div", { staticClass: "page-wrapper" }, [
+        _c("div", { staticClass: "page-header" }, [
+          _c("div", { staticClass: "row align-items-end" }, [
+            _c("div", { staticClass: "col-lg-8" }, [
+              _c("div", { staticClass: "page-header-title" }, [
+                _c("div", { staticClass: "d-inline" }, [
+                  _c("h4", [_vm._v("STUDENTS LIST TABLE")]),
+                  _vm._v(" "),
+                  _c("span", [_vm._v("THE LIST OF STUDENTS")]),
+                ]),
+              ]),
+            ]),
+          ]),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "page-body" }, [
+        _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "card-body" }, [
+            _c(
+              "table",
+              {
+                staticClass: "table table-striped",
+                staticStyle: { width: "100%" },
+                attrs: { id: "datatables-buttons" },
+              },
+              [
+                _c("thead", [
+                  _c("tr", [
+                    _c("th", [_vm._v("Registration No")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Surname")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("First Name")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Department")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Admission Date")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Contact No")]),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("tbody"),
+              ]
+            ),
+          ]),
+        ]),
       ]),
     ])
   },

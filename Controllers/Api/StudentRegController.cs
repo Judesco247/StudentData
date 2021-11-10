@@ -84,5 +84,13 @@ namespace StudentData.Controllers.Api
             var StudentInDB = _studentDataContext.StudentReg.Find(id);
             return Ok(StudentInDB);
         }
+
+        // GET : /api/controller/getAllDepartment
+        [Route("getAllDepartment")]
+        [HttpGet]
+        public IActionResult GetAllDepartment()
+        {
+            return Ok(_studentDataContext.Departments.ToList());
+        }
     }
 }

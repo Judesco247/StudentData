@@ -26,7 +26,7 @@
                   <label class="form-label">REGISTRATION NUM</label>
                   <input
                     type="text"
-                    name="fname"
+                    name="reg_no"
                     class="form-control form-control-inverse"
                   />
                 </div>
@@ -115,7 +115,7 @@
                 <label class="form-label">DATE of BIRTH</label>
                 <vuejsDatepicker
                   input-class="form-control"
-                  type="date"
+                  type="date_1"
                   name="admissiondate"
                   required
                   readonly
@@ -127,7 +127,7 @@
                   <label class="form-label">PHONE NUMBER</label>
                   <input
                     type="number"
-                    name="phonenumber"
+                    name="phonenumber_1"
                     class="form-control form-control-inverse"
                   />
                 </div>
@@ -137,7 +137,7 @@
                   <label class="form-label"> ALT PHONE NUMBER</label>
                   <input
                     type="number"
-                    name="phonenumber"
+                    name="phonenumber_2"
                     class="form-control form-control-inverse"
                   />
                 </div>
@@ -149,7 +149,7 @@
                   <label class="form-label">PROGRAM</label>
                   <input
                     type="text"
-                    name="religion"
+                    name="program"
                     class="form-control form-control-inverse"
                   />
                 </div>
@@ -159,7 +159,7 @@
                   <label class="form-label">DEPARTMENT</label>
                   <input
                     type="text"
-                    name="religion"
+                    name="dept"
                     class="form-control form-control-inverse"
                   />
                 </div>
@@ -169,7 +169,7 @@
                   <label class="form-label">COURSE</label>
                   <input
                     type="text"
-                    name="religion"
+                    name="course"
                     class="form-control form-control-inverse"
                   />
                 </div>
@@ -178,7 +178,7 @@
                 <label class="form-label">ADMISSION DATE</label>
                 <vuejsDatepicker
                   input-class="form-control"
-                  type="date"
+                  type="date_2"
                   name="admissiondate"
                   required
                   readonly
@@ -202,6 +202,78 @@
         </form>
       </div>
     </div>
+
+    <!-- ASSET TABLE -->
+    <div>
+      <div class="page-wrapper">
+        <div class="page-header">
+          <div class="row align-items-end">
+            <div class="col-lg-8">
+                <div class="page-header-title">
+                  <div class="d-inline">
+                    <h4>STUDENTS LIST TABLE</h4>
+                    <span>THE LIST OF STUDENTS</span>
+                  </div>
+                </div>
+            </div>
+            <!-- <div class="col-lg-4">
+              <div class="page-header-breadcrumb">
+                <ul class="breadcrumb-title">
+                  <li class="breadcrumb-item">
+                    <a href="index.html"> <i class="feather icon-home"></i> </a>
+                  </li>
+                  <li class="breadcrumb-item">
+                    <a href="#!">Data Table</a>
+                  </li>
+                  <li class="breadcrumb-item">
+                    <a href="#!">Styling</a>
+                  </li>
+                </ul>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="page-body">
+        <div class="card">
+          <div class="card-body">
+            <table id="datatables-buttons" class="table table-striped" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Registration No</th>
+                        <th>Surname</th>
+                        <th>First Name</th>
+                        <th>Department</th>
+                        <th>Admission Date</th>
+                        <th>Contact No</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- <tr v-for="(assetReg,index) in assetRegList" :key="index">
+                        <td>{{ assetReg.assetCode }}</td>
+                        <td>{{ assetReg.assetDesc }}</td>
+                        <td style="display:none;">{{ assetReg.classCode }}</td>
+                        <td style="display:none;">{{ assetReg.id }}</td>
+                        <td>{{ assetReg.classDesc }}</td>
+                        <td style="display:none;">{{ assetReg.unitCode }}</td>
+                        <td>{{ assetReg.unitDesc }}</td>
+                        <td style="display:none;">{{ assetReg.busline }}</td>
+                        <td>{{ assetReg.buslineDesc }}</td>
+                        <td>{{ assetReg.purchval }}</td>
+
+                        <td>
+                            <button type="button" class="btn btn-submit btn-primary" @click="editAssetReg(assetReg.assetCode)" >Edit</button>
+                            <button type="button" class="btn btn-submit btn-danger" @click="deleteAssetReg(assetReg.id, assetReg.assetDesc)" >Delete</button>
+                        </td>
+                    </tr> -->
+                </tbody>
+              
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -211,6 +283,39 @@ export default {
   components: {
     vuejsDatepicker,
   },
+
+  data(){
+    return {
+      isFormVisible: false,
+      errors: [],
+      showCreateButton: true,
+      responseMessage: "",
+      CreateOrUpdate: "Create",
+      classList: null,
+      departments: null,
+      states: null,
+      lga: null,
+      course: null,
+      program: null,
+      objectBody: {
+        reg_no: "",
+        fname: "",
+        surname: "",
+        lname: "",
+        address: "",
+        state: "",
+        lga: "",
+        religion: "",
+        date_1: "",
+        phonenumber_1: "",
+        phonenumber_2: "", 
+        program: "",
+        dept: "",
+        course: "",
+        date_2: "",
+      },
+    };
+  }
 };
 </script>
 
