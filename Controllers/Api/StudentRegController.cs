@@ -92,5 +92,21 @@ namespace StudentData.Controllers.Api
         {
             return Ok(_studentDataContext.Departments.ToList());
         }
+
+        //GET : /api/controller/getAllProgram
+        [Route("getAllProgram")]
+        [HttpGet]
+        public IActionResult GetProgram()
+        {
+            return Ok(_studentDataContext.Programs.ToList());
+        }
+
+        //GET : /api/controller/getAllCourse
+        [Route("getAllCourse")]
+        [HttpGet]
+        public IActionResult GetCourses()
+        {
+            return Ok(_studentDataContext.Courses.ToList());
+        }
     }
 }
