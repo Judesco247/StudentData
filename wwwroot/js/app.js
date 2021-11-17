@@ -399,6 +399,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -1202,10 +1208,14 @@ var staticRenderFns = [
       _c("div", { staticClass: "form-group" }, [
         _c("label", { staticClass: "form-label" }, [_vm._v("PROGRAM")]),
         _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control form-control-inverse",
-          attrs: { type: "text", name: "program" },
-        }),
+        _c(
+          "select",
+          {
+            staticClass: "form-control form-control-inverse",
+            attrs: { type: "text", name: "program" },
+          },
+          [_c("option")]
+        ),
       ]),
     ])
   },
@@ -1217,10 +1227,14 @@ var staticRenderFns = [
       _c("div", { staticClass: "form-group" }, [
         _c("label", { staticClass: "form-label" }, [_vm._v("DEPARTMENT")]),
         _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control form-control-inverse",
-          attrs: { type: "text", name: "dept" },
-        }),
+        _c(
+          "select",
+          {
+            staticClass: "form-control form-control-inverse",
+            attrs: { type: "text", name: "dept" },
+          },
+          [_c("option")]
+        ),
       ]),
     ])
   },
@@ -1232,10 +1246,14 @@ var staticRenderFns = [
       _c("div", { staticClass: "form-group" }, [
         _c("label", { staticClass: "form-label" }, [_vm._v("COURSE")]),
         _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control form-control-inverse",
-          attrs: { type: "text", name: "course" },
-        }),
+        _c(
+          "select",
+          {
+            staticClass: "form-control form-control-inverse",
+            attrs: { type: "text", name: "course" },
+          },
+          [_c("option")]
+        ),
       ]),
     ])
   },
@@ -16164,7 +16182,7 @@ var app = new Vue({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\user\Desktop\My Projects\StudentData\vue\app.js */"./vue/app.js");
+module.exports = __webpack_require__(/*! C:\Users\HICADPC\Desktop\Jude Project\StudentData\vue\app.js */"./vue/app.js");
 
 
 /***/ })

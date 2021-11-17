@@ -147,31 +147,37 @@
               <div class="col-sm-3 col-md-3 col-xl-3">
                 <div class="form-group">
                   <label class="form-label">PROGRAM</label>
-                  <input
+                  <select
                     type="text"
                     name="program"
                     class="form-control form-control-inverse"
-                  />
+                  >
+                  <option></option>
+                  </select>
                 </div>
               </div>
               <div class="col-sm-3 col-md-3 col-xl-3">
                 <div class="form-group">
                   <label class="form-label">DEPARTMENT</label>
-                  <input
+                  <select
                     type="text"
                     name="dept"
                     class="form-control form-control-inverse"
-                  />
+                  >
+                  <option></option>
+                  </select>
                 </div>
               </div>
               <div class="col-sm-3 col-md-3 col-xl-3">
                 <div class="form-group">
                   <label class="form-label">COURSE</label>
-                  <input
+                  <select
                     type="text"
                     name="course"
                     class="form-control form-control-inverse"
-                  />
+                  >
+                  <option></option>
+                  </select>
                 </div>
               </div>
               <div class="col-sm-3 col-md-3 col-xl-3">
