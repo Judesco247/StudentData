@@ -10,7 +10,7 @@ using static StudentData.Data.DBContext_Class;
 namespace StudentData.Controllers.Api
 {
 
-    [Route("api/[controller]")]
+    [Route("api/StudentReg")]
     [ApiController()]
     public class StudentRegController : ControllerBase
     {
@@ -22,7 +22,7 @@ namespace StudentData.Controllers.Api
         }
 
         // GET : /api/controller/getAllStudents
-        [Route("getAllStudents")]
+        [Route("/getAllStudents")]
         [HttpGet]
         public IActionResult GetAllStudents()
         {
@@ -107,6 +107,31 @@ namespace StudentData.Controllers.Api
         public IActionResult GetCourses()
         {
             return Ok(_studentDataContext.Courses.ToList());
+        }
+
+        //GET : /api/controller/getAllState
+        [Route("getAllState")]
+        [HttpGet]
+        public IActionResult GetStates()
+        {
+            return Ok(_studentDataContext.States.ToList());
+        }
+
+        //GET : /api/controller/getLGA
+        [Route("getLGA")]
+        [HttpGet]
+        public IActionResult GetLGA()
+        {
+            return Ok(_studentDataContext.LocalGovt.ToList());
+        }
+
+        //GET : /api/controller/eachgetLGA
+        [Route("eachgetLGA/{StateId}")]
+        [HttpGet]
+        public IActionResult GetEachLGA(int StateId)
+        {
+            var LocalGovt = _studentDataContext.LocalGovt.Where(x => x.StateId == StateId).ToList();
+            return Ok(LocalGovt);
         }
     }
 }

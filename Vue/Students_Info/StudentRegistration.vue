@@ -77,25 +77,55 @@
                 <div class="form-group">
                   <label class="form-label">STATE of ORIGIN</label>
                   <select
-                    type="text"
+                    v-model="myObject.StateId"
+                    @change="getLga()"
                     name="state"
                     class="form-control form-control-inverse"
                     required
                   >
-                  <option></option>
+                    <option
+                      v-for="State in states"
+                      v-bind:value="State.stateId"
+                      v-bind:key="State.stateId"
+                      required
+                    >
+                    {{ State.name }}
+                    </option>
                   </select>
+
+                  <!-- <select 
+                                name=""
+                                v-model="objectBody.assetCode"
+                                @change="getAssetValue()"
+                                class="form-control">
+                                <option 
+                                    v-for="blist in assetRegList"
+                                    v-bind:value="blist.assetCode"
+                                    v-bind:key="blist.assetCode"
+                                    required
+                                >
+                                {{ blist.assetDesc }}
+                                </option>
+                                </select> -->
                 </div>
               </div>
               <div class="col-sm-3 col-md-3 col-xl-3">
                 <div class="form-group">
                   <label class="form-label">LGA</label>
                   <select
-                    type="text"
+                    v-model="myObject.LocalGovt"
                     name="lga"
                     class="form-control form-control-inverse"
                     required
                   >
-                  <option></option>
+                    <option
+                      v-for="lgalist in localGovt"
+                      v-bind:value="lgalist.Code"
+                      v-bind:key="lgalist.Code"
+                      required
+                    >
+                      {{ lgalist.lgaName }}
+                    </option>
                   </select>
                 </div>
               </div>
@@ -152,7 +182,7 @@
                     name="program"
                     class="form-control form-control-inverse"
                   >
-                  <option></option>
+                    <option></option>
                   </select>
                 </div>
               </div>
@@ -164,7 +194,7 @@
                     name="dept"
                     class="form-control form-control-inverse"
                   >
-                  <option></option>
+                    <option></option>
                   </select>
                 </div>
               </div>
@@ -176,7 +206,7 @@
                     name="course"
                     class="form-control form-control-inverse"
                   >
-                  <option></option>
+                    <option></option>
                   </select>
                 </div>
               </div>
@@ -215,12 +245,12 @@
         <div class="page-header">
           <div class="row align-items-end">
             <div class="col-lg-8">
-                <div class="page-header-title">
-                  <div class="d-inline">
-                    <h4>STUDENTS LIST TABLE</h4>
-                    <span>THE LIST OF STUDENTS</span>
-                  </div>
+              <div class="page-header-title">
+                <div class="d-inline">
+                  <h4>STUDENTS LIST TABLE</h4>
+                  <span>THE LIST OF STUDENTS</span>
                 </div>
+              </div>
             </div>
             <!-- <div class="col-lg-4">
               <div class="page-header-breadcrumb">
@@ -244,19 +274,23 @@
       <div class="page-body">
         <div class="card">
           <div class="card-body">
-            <table id="datatables-buttons" class="table table-striped" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>Registration No</th>
-                        <th>Surname</th>
-                        <th>First Name</th>
-                        <th>Department</th>
-                        <th>Admission Date</th>
-                        <th>Contact No</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- <tr v-for="(assetReg,index) in assetRegList" :key="index">
+            <table
+              id="datatables-buttons"
+              class="table table-striped"
+              style="width: 100%"
+            >
+              <thead>
+                <tr>
+                  <th>Registration No</th>
+                  <th>Surname</th>
+                  <th>First Name</th>
+                  <th>Department</th>
+                  <th>Admission Date</th>
+                  <th>Contact No</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- <tr v-for="(assetReg,index) in assetRegList" :key="index">
                         <td>{{ assetReg.assetCode }}</td>
                         <td>{{ assetReg.assetDesc }}</td>
                         <td style="display:none;">{{ assetReg.classCode }}</td>
@@ -273,8 +307,7 @@
                             <button type="button" class="btn btn-submit btn-danger" @click="deleteAssetReg(assetReg.id, assetReg.assetDesc)" >Delete</button>
                         </td>
                     </tr> -->
-                </tbody>
-              
+              </tbody>
             </table>
           </div>
         </div>
@@ -290,7 +323,7 @@ export default {
     vuejsDatepicker,
   },
 
-  data(){
+  data() {
     return {
       isFormVisible: false,
       errors: [],
@@ -300,7 +333,7 @@ export default {
       classList: null,
       departments: null,
       states: null,
-      lga: null,
+      localGovt: null,
       course: null,
       program: null,
       objectBody: {
@@ -314,14 +347,47 @@ export default {
         religion: "",
         date_1: "",
         phonenumber_1: "",
-        phonenumber_2: "", 
+        phonenumber_2: "",
         program: "",
         dept: "",
         course: "",
         date_2: "",
       },
+      myObject: {
+        Code: "",
+        LocalGovt: "",
+        MyState: "",
+        StateId: ""
+
+      }
     };
-  }
+  },
+
+  mounted() {
+    axios
+      .get("/api/StudentReg/getAllState")
+      .then((response) => (this.states = response.data));
+    //  axios
+    //     .get("/api/StudentReg/getLGA")
+    //     .then((response) => (this.localGovt = response.data));
+  },
+
+  methods: {
+    checkForm: function (e) {
+            this.postPost();
+        },
+    getLga() {
+      axios
+            .get(
+            `/api/StudentReg/eachgetLGA/${this.myObject.StateId}`
+            )
+            .then((response) => {
+                this.localGovt = response.data;
+                console.log(response.data);
+            });
+    },
+    
+  },
 };
 </script>
 
