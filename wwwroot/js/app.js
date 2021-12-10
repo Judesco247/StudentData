@@ -2608,11 +2608,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2628,6 +2623,7 @@ __webpack_require__.r(__webpack_exports__);
       classList: null,
       departments: null,
       states: null,
+      Religions: null,
       localGovt: null,
       course: null,
       program: null,
@@ -2661,9 +2657,10 @@ __webpack_require__.r(__webpack_exports__);
 
     axios.get("/api/StudentReg/getAllState").then(function (response) {
       return _this.states = response.data;
-    }); //  axios
-    //     .get("/api/StudentReg/getLGA")
-    //     .then((response) => (this.localGovt = response.data));
+    });
+    axios.get("/api/StudentReg/getReligion").then(function (response) {
+      return _this.Religions = response.data;
+    });
   },
   methods: {
     checkForm: function checkForm(e) {
@@ -3328,7 +3325,66 @@ var render = function () {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
-              _vm._m(3),
+              _c("div", { staticClass: "col-sm-3 col-md-3 col-xl-3" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { staticClass: "form-label" }, [
+                    _vm._v("RELIGION"),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.objectBody.religion,
+                          expression: "objectBody.religion",
+                        },
+                      ],
+                      staticClass: "form-control form-control-inverse",
+                      attrs: { name: "religion", required: "" },
+                      on: {
+                        change: function ($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function (o) {
+                              return o.selected
+                            })
+                            .map(function (o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.objectBody,
+                            "religion",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        },
+                      },
+                    },
+                    _vm._l(_vm.Religions, function (Religion) {
+                      return _c(
+                        "option",
+                        {
+                          key: Religion.ReligionId,
+                          attrs: { required: "" },
+                          domProps: { value: Religion.ReligionId },
+                        },
+                        [
+                          _vm._v(
+                            "\n                  " +
+                              _vm._s(Religion.name) +
+                              "\n                  "
+                          ),
+                        ]
+                      )
+                    }),
+                    0
+                  ),
+                ]),
+              ]),
               _vm._v(" "),
               _c(
                 "div",
@@ -3351,17 +3407,17 @@ var render = function () {
                 1
               ),
               _vm._v(" "),
-              _vm._m(4),
+              _vm._m(3),
               _vm._v(" "),
-              _vm._m(5),
+              _vm._m(4),
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
+              _vm._m(5),
+              _vm._v(" "),
               _vm._m(6),
               _vm._v(" "),
               _vm._m(7),
-              _vm._v(" "),
-              _vm._m(8),
               _vm._v(" "),
               _c(
                 "div",
@@ -3385,13 +3441,13 @@ var render = function () {
               ),
             ]),
             _vm._v(" "),
-            _vm._m(9),
+            _vm._m(8),
           ]),
         ]),
       ]),
     ]),
     _vm._v(" "),
-    _vm._m(10),
+    _vm._m(9),
   ])
 }
 var staticRenderFns = [
@@ -3478,21 +3534,6 @@ var staticRenderFns = [
         _c("input", {
           staticClass: "form-control form-control-inverse",
           attrs: { type: "text", name: "address" },
-        }),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-3 col-md-3 col-xl-3" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { staticClass: "form-label" }, [_vm._v("RELIGION")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control form-control-inverse",
-          attrs: { type: "text", name: "religion" },
         }),
       ]),
     ])

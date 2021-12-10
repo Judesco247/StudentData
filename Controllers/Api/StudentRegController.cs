@@ -133,5 +133,13 @@ namespace StudentData.Controllers.Api
             var LocalGovt = _studentDataContext.LocalGovt.Where(x => x.StateId == StateId).ToList();
             return Ok(LocalGovt);
         }
+
+        //GET : /api/controller/getReligion
+        [Route("getReligion")]
+        [HttpGet]
+        public IActionResult GetReligion()
+        {
+            return Ok(_studentDataContext.Religions.ToList());
+        }
     }
 }

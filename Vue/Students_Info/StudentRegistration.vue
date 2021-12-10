@@ -92,21 +92,6 @@
                     {{ State.name }}
                     </option>
                   </select>
-
-                  <!-- <select 
-                                name=""
-                                v-model="objectBody.assetCode"
-                                @change="getAssetValue()"
-                                class="form-control">
-                                <option 
-                                    v-for="blist in assetRegList"
-                                    v-bind:value="blist.assetCode"
-                                    v-bind:key="blist.assetCode"
-                                    required
-                                >
-                                {{ blist.assetDesc }}
-                                </option>
-                                </select> -->
                 </div>
               </div>
               <div class="col-sm-3 col-md-3 col-xl-3">
@@ -134,11 +119,21 @@
               <div class="col-sm-3 col-md-3 col-xl-3">
                 <div class="form-group">
                   <label class="form-label">RELIGION</label>
-                  <input
-                    type="text"
+                  <select
+                    v-model="objectBody.religion"
                     name="religion"
                     class="form-control form-control-inverse"
-                  />
+                    required
+                  >
+                    <option
+                      v-for="Religion in Religions"
+                      v-bind:value="Religion.ReligionId"
+                      v-bind:key="Religion.ReligionId"
+                      required
+                    >
+                    {{ Religion.name }}
+                    </option>
+                  </select>
                 </div>
               </div>
               <div class="col-sm-3 col-md-3 col-xl-3">
@@ -333,6 +328,7 @@ export default {
       classList: null,
       departments: null,
       states: null,
+      Religions: null,
       localGovt: null,
       course: null,
       program: null,
@@ -367,9 +363,9 @@ export default {
     axios
       .get("/api/StudentReg/getAllState")
       .then((response) => (this.states = response.data));
-    //  axios
-    //     .get("/api/StudentReg/getLGA")
-    //     .then((response) => (this.localGovt = response.data));
+     axios
+        .get("/api/StudentReg/getReligion")
+        .then((response) => (this.Religions = response.data));
   },
 
   methods: {
