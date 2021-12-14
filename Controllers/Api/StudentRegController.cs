@@ -21,7 +21,7 @@ namespace StudentData.Controllers.Api
             _studentDataContext = studentDataContext;
         }
 
-        // GET : /api/controller/getAllStudents
+        // GET : /api/StudentReg/getAllStudents
         [Route("/getAllStudents")]
         [HttpGet]
         public IActionResult GetAllStudents()
@@ -29,7 +29,7 @@ namespace StudentData.Controllers.Api
             return Ok(_studentDataContext.StudentReg.ToList());
         }
 
-        // POST: api/controller/addnewstudent
+        // POST: api/StudentReg/addnewstudent
         [Route("addnewstudent")]
         [HttpPost]
         public IActionResult AddNewStudent([FromBody] StudentReg studentReg)
@@ -39,7 +39,7 @@ namespace StudentData.Controllers.Api
             return Ok();
         }
 
-        // PUT: api/controller/updateStudentinfo
+        // PUT: api/StudentReg/updateStudentinfo
         [Route("updateStudentinfo")]
         [HttpPut]
         public IActionResult UpdateStudentInfo(StudentReg studentReg)
@@ -67,7 +67,7 @@ namespace StudentData.Controllers.Api
             return Ok();
         }
 
-        //api/controller/Removestudent/id
+        //api/StudentReg/Removestudent/id
         [Route("Removestudent/{id:int}")]
         [HttpGet]
         public IActionResult Delete(int id)
@@ -77,15 +77,27 @@ namespace StudentData.Controllers.Api
             _studentDataContext.SaveChanges();
             return Ok();
         }
-        //api/controller/Getstudent/id
+
+        // GET : /api/StudentReg/GetState/id
+        [Route("GetState/{stateId}")]
+        [HttpGet]
+        public IActionResult GetStates(int stateId)
+        {
+            var StatesInDB = _studentDataContext.States.Find(stateId);
+            return Ok(StatesInDB);
+        }
+
+
+        // GET : /api/StudentReg/Getstudent/id
         [Route("Getstudent/{id:int}")]
+        [HttpGet]
         public IActionResult GetStudents(int id)
         {
             var StudentInDB = _studentDataContext.StudentReg.Find(id);
             return Ok(StudentInDB);
         }
 
-        // GET : /api/controller/getAllDepartment
+        // GET : /api/StudentReg/getAllDepartment
         [Route("getAllDepartment")]
         [HttpGet]
         public IActionResult GetAllDepartment()
@@ -93,7 +105,7 @@ namespace StudentData.Controllers.Api
             return Ok(_studentDataContext.Departments.ToList());
         }
 
-        //GET : /api/controller/getAllProgram
+        //GET : /api/StudentReg/getAllProgram
         [Route("getAllProgram")]
         [HttpGet]
         public IActionResult GetProgram()
@@ -101,7 +113,7 @@ namespace StudentData.Controllers.Api
             return Ok(_studentDataContext.Programs.ToList());
         }
 
-        //GET : /api/controller/getAllCourse
+        //GET : /api/StudentReg/getAllCourse
         [Route("getAllCourse")]
         [HttpGet]
         public IActionResult GetCourses()
@@ -109,7 +121,24 @@ namespace StudentData.Controllers.Api
             return Ok(_studentDataContext.Courses.ToList());
         }
 
-        //GET : /api/controller/getAllState
+        //POST : /api/StudentReg/addnewState
+        [Route("addnewState")]
+        [HttpPost]
+        public IActionResult AddState([FromBody] States states)
+        {
+            States statesToCreate = new States()
+            {
+                Name = states.Name,
+                Code = states.Code,
+                geozoneid = states.geozoneid,
+                CountryId = states.CountryId,
+            };
+            _studentDataContext.Add(statesToCreate);
+            _studentDataContext.SaveChanges();
+            return Ok();
+        }
+
+        //GET : /api/StudentReg/getAllState
         [Route("getAllState")]
         [HttpGet]
         public IActionResult GetStates()
@@ -117,7 +146,25 @@ namespace StudentData.Controllers.Api
             return Ok(_studentDataContext.States.ToList());
         }
 
-        //GET : /api/controller/getLGA
+        // PUT: /api/StudentReg/updateStates
+        [Route("updateStates")]
+        [HttpPut]
+        public IActionResult UpdateStates(States states)
+        {
+            var StatesInDB = _studentDataContext.States.Find(states.StateId);
+
+            StatesInDB.StateId = states.StateId;
+            StatesInDB.Name = states.Name;
+            StatesInDB.Code = states.Code;
+            StatesInDB.geozoneid = states.geozoneid;
+            StatesInDB.CountryId = states.CountryId;
+
+            _studentDataContext.States.Update(StatesInDB);
+            _studentDataContext.SaveChanges();
+            return Ok();
+        }
+
+        //GET : /api/StudentReg/getLGA
         [Route("getLGA")]
         [HttpGet]
         public IActionResult GetLGA()
@@ -125,7 +172,7 @@ namespace StudentData.Controllers.Api
             return Ok(_studentDataContext.LocalGovt.ToList());
         }
 
-        //GET : /api/controller/eachgetLGA
+        //GET : /api/StudentReg/eachgetLGA
         [Route("eachgetLGA/{StateId}")]
         [HttpGet]
         public IActionResult GetEachLGA(int StateId)
@@ -134,7 +181,7 @@ namespace StudentData.Controllers.Api
             return Ok(LocalGovt);
         }
 
-        //GET : /api/controller/getReligion
+        //GET : /api/StudentReg/getReligion
         [Route("getReligion")]
         [HttpGet]
         public IActionResult GetReligion()

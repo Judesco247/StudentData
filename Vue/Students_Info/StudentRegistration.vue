@@ -369,9 +369,68 @@ export default {
   },
 
   methods: {
-    checkForm: function (e) {
-            this.postPost();
-        },
+     checkForm: function (e) {
+      this.errors = [];
+
+      if (this.objectBody.reg_no == "") this.errors.push("Code required.");
+
+      if (this.objectBody.fname == "")
+        this.errors.push("Description required.");
+
+      if (this.objectBody.surname == "")
+        this.errors.push("Depreciation Rate required.");
+
+      if (this.objectBody.lname == "")
+        this.errors.push("Method required.");
+
+      if (this.objectBody.address == "")
+        this.errors.push("Cost Code required.");
+      
+      if (this.objectBody.state == "")
+        this.errors.push("Cost Code required.");
+      
+      if (this.objectBody.lga == "")
+        this.errors.push("Cost Code required.");
+      
+      if (this.objectBody.religion == "")
+        this.errors.push("Cost Code required.");
+      
+      if (this.objectBody.date_1 == "")
+        this.errors.push("Cost Code required.");
+      
+      if (this.objectBody.phonenumber_1 == "")
+        this.errors.push("Cost Code required.");
+      
+      if (this.objectBody.phonenumber_2 == "")
+        this.errors.push("Cost Code required.");
+      
+      if (this.objectBody.program == "")
+        this.errors.push("Cost Code required.");
+      
+      if (this.objectBody.dept == "")
+        this.errors.push("Cost Code required.");
+      
+      if (this.objectBody.course == "")
+        this.errors.push("Cost Code required.");
+      
+      if (this.objectBody.date_2 == "")
+        this.errors.push("Cost Code required.");
+
+      if (
+        this.objectBody.stateId &&
+        this.objectBody.name &&
+        this.objectBody.code &&
+        this.objectBody.geozoneid &&
+        this.objectBody.countryId 
+      ) {
+        this.errors = [];
+
+        this.postPost();
+      }
+
+      e.preventDefault();
+    },
+
     getLga() {
       axios
             .get(
