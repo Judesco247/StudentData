@@ -47,12 +47,11 @@ namespace StudentData.Controllers.Api
             var StudentInDB = _studentDataContext.StudentReg.Find(studentReg.Id);
 
             StudentInDB.RegNumber = studentReg.RegNumber;
-            StudentInDB.FirstName = studentReg.FirstName;
             StudentInDB.Surname = studentReg.Surname;
-            StudentInDB.LastName = studentReg.LastName;
+            StudentInDB.OtherNames = studentReg.OtherNames;
             StudentInDB.Address = studentReg.Address;
-            StudentInDB.StateOfOrigin = studentReg.StateOfOrigin;
-            StudentInDB.LGA = studentReg.LGA;
+            StudentInDB.States = studentReg.States;
+            StudentInDB.LocalGovt = studentReg.LocalGovt;
             StudentInDB.Religion = studentReg.Religion;
             StudentInDB.DateOfBirth = studentReg.DateOfBirth;
             StudentInDB.PhoneNumber = studentReg.PhoneNumber;
@@ -95,30 +94,6 @@ namespace StudentData.Controllers.Api
         {
             var StudentInDB = _studentDataContext.StudentReg.Find(id);
             return Ok(StudentInDB);
-        }
-
-        // GET : /api/StudentReg/getAllDepartment
-        [Route("getAllDepartment")]
-        [HttpGet]
-        public IActionResult GetAllDepartment()
-        {
-            return Ok(_studentDataContext.Departments.ToList());
-        }
-
-        //GET : /api/StudentReg/getAllProgram
-        [Route("getAllProgram")]
-        [HttpGet]
-        public IActionResult GetProgram()
-        {
-            return Ok(_studentDataContext.Programs.ToList());
-        }
-
-        //GET : /api/StudentReg/getAllCourse
-        [Route("getAllCourse")]
-        [HttpGet]
-        public IActionResult GetCourses()
-        {
-            return Ok(_studentDataContext.Courses.ToList());
         }
 
         //POST : /api/StudentReg/addnewState
@@ -179,14 +154,6 @@ namespace StudentData.Controllers.Api
         {
             var LocalGovt = _studentDataContext.LocalGovt.Where(x => x.StateId == StateId).ToList();
             return Ok(LocalGovt);
-        }
-
-        //GET : /api/StudentReg/getReligion
-        [Route("getReligion")]
-        [HttpGet]
-        public IActionResult GetReligion()
-        {
-            return Ok(_studentDataContext.Religions.ToList());
         }
     }
 }

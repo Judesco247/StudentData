@@ -2943,19 +2943,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2963,84 +2950,126 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      isFormVisible: false,
       errors: [],
       showCreateButton: true,
       responseMessage: "",
       CreateOrUpdate: "Create",
       classList: null,
-      departments: null,
-      states: null,
+      Depts: null,
+      States: null,
       Religions: null,
-      localGovt: null,
-      course: null,
-      program: null,
+      lga: null,
+      Courses: null,
+      Programs: null,
       objectBody: {
-        reg_no: "",
-        fname: "",
+        regNumber: "",
+        firstName: "",
         surname: "",
-        lname: "",
+        lastName: "",
         address: "",
-        state: "",
-        lga: "",
-        religion: "",
-        date_1: "",
-        phonenumber_1: "",
-        phonenumber_2: "",
-        program: "",
-        dept: "",
-        course: "",
-        date_2: ""
-      },
-      myObject: {
-        Code: "",
-        LocalGovt: "",
-        MyState: "",
-        StateId: ""
-      }
+        stateId: "",
+        localGovt: "",
+        religionId: "",
+        dateOfBirth: "",
+        phoneNumber: "",
+        alt_PhoneNumber: "",
+        programId: "",
+        departmentId: "",
+        courseId: "",
+        dateOfAdmission: ""
+      } // myObject: {
+      //   Code: "",
+      //   LocalGovt: "",
+      //   MyState: "",
+      //   StateId: "",
+      // },
+
     };
   },
   mounted: function mounted() {
     var _this = this;
 
     axios.get("/api/StudentReg/getAllState").then(function (response) {
-      return _this.states = response.data;
+      return _this.States = response.data;
     });
     axios.get("/api/StudentReg/getReligion").then(function (response) {
       return _this.Religions = response.data;
+    });
+    axios.get("/api/StudentReg/getAllDepartment").then(function (response) {
+      return _this.Depts = response.data;
+    });
+    axios.get("/api/StudentReg/getAllProgram").then(function (response) {
+      return _this.Programs = response.data;
+    });
+    axios.get("/api/StudentReg/getAllCourse").then(function (response) {
+      return _this.Courses = response.data;
     });
   },
   methods: {
     checkForm: function checkForm(e) {
       this.errors = [];
-      if (this.objectBody.reg_no == "") this.errors.push("Code required.");
-      if (this.objectBody.fname == "") this.errors.push("Description required.");
+      if (this.objectBody.regNumber == "") this.errors.push("Code required.");
+      if (this.objectBody.firstName == "") this.errors.push("Description required.");
       if (this.objectBody.surname == "") this.errors.push("Depreciation Rate required.");
-      if (this.objectBody.lname == "") this.errors.push("Method required.");
+      if (this.objectBody.lastName == "") this.errors.push("Method required.");
       if (this.objectBody.address == "") this.errors.push("Cost Code required.");
-      if (this.objectBody.state == "") this.errors.push("Cost Code required.");
-      if (this.objectBody.lga == "") this.errors.push("Cost Code required.");
-      if (this.objectBody.religion == "") this.errors.push("Cost Code required.");
-      if (this.objectBody.date_1 == "") this.errors.push("Cost Code required.");
-      if (this.objectBody.phonenumber_1 == "") this.errors.push("Cost Code required.");
-      if (this.objectBody.phonenumber_2 == "") this.errors.push("Cost Code required.");
-      if (this.objectBody.program == "") this.errors.push("Cost Code required.");
-      if (this.objectBody.dept == "") this.errors.push("Cost Code required.");
-      if (this.objectBody.course == "") this.errors.push("Cost Code required.");
-      if (this.objectBody.date_2 == "") this.errors.push("Cost Code required.");
+      if (this.objectBody.stateId == "") this.errors.push("Cost Code required.");
+      if (this.objectBody.localGovt == "") this.errors.push("Cost Code required.");
+      if (this.objectBody.religionId == "") this.errors.push("Cost Code required.");
+      if (this.objectBody.dateOfBirth == "") this.errors.push("Cost Code required.");
+      if (this.objectBody.phoneNumber == "") this.errors.push("Cost Code required.");
+      if (this.objectBody.alt_PhoneNumber == "") this.errors.push("Cost Code required.");
+      if (this.objectBody.programId == "") this.errors.push("Cost Code required.");
+      if (this.objectBody.departmentId == "") this.errors.push("Cost Code required.");
+      if (this.objectBody.courseId == "") this.errors.push("Cost Code required.");
+      if (this.objectBody.dateOfAdmission == "") this.errors.push("Cost Code required.");
 
-      if (this.objectBody.stateId && this.objectBody.name && this.objectBody.code && this.objectBody.geozoneid && this.objectBody.countryId) {
+      if (this.objectBody.regNumber && this.objectBody.firstName && this.objectBody.surname && this.objectBody.lastName && this.objectBody.address && this.objectBody.stateId && this.objectBody.localGovt && this.objectBody.religionId && this.objectBody.dateOfBirth && this.objectBody.phoneNumber && this.objectBody.alt_PhoneNumber && this.objectBody.programId && this.objectBody.departmentId && this.objectBody.courseId && this.objectBody.dateOfAdmission) {
         this.errors = [];
         this.postPost();
       }
 
       e.preventDefault();
     },
-    getLga: function getLga() {
+    postPost: function postPost() {
       var _this2 = this;
 
-      axios.get("/api/StudentReg/eachgetLGA/".concat(this.myObject.StateId)).then(function (response) {
-        _this2.localGovt = response.data;
+      axios.post("/api/StudentReg/addnewstudent/", this.objectBody).then(function (response) {
+        _this2.responseMessage = response.data.responseDescription;
+        _this2.canProcess = true;
+
+        if (response.data.responseCode == "200") {
+          //this Clears the Input field.
+          _this2.onCancel();
+        }
+      })["catch"](function (e) {
+        _this2.errors.push(e);
+      });
+      this.$alert("Student Created Successfully!!!", "Ok", "success");
+    },
+    onCancel: function onCancel() {
+      this.errors = [];
+      this.objectBody.regNumber = "";
+      this.objectBody.firstName = "";
+      this.objectBody.surname = "";
+      this.objectBody.lastName = "";
+      this.objectBody.address = "";
+      this.objectBody.stateId = "";
+      this.objectBody.localGovt = "";
+      this.objectBody.religionId = "";
+      this.objectBody.dateOfBirth = "";
+      this.objectBody.phoneNumber = "";
+      this.objectBody.alt_PhoneNumber = "";
+      this.objectBody.programId = "";
+      this.objectBody.departmentId = "";
+      this.objectBody.courseId = "";
+      this.objectBody.dateOfAdmission = "";
+    },
+    getLga: function getLga() {
+      var _this3 = this;
+
+      axios.get("/api/StudentReg/eachgetLGA/".concat(this.objectBody.stateId)).then(function (response) {
+        _this3.lga = response.data;
         console.log(response.data);
       });
     }
@@ -6773,7 +6802,8 @@ var render = function () {
                             _c(
                               "button",
                               {
-                                staticClass: "btn btn-submit btn-primary",
+                                staticClass:
+                                  "btn btn-submit btn-primary btn-sm btn-block",
                                 attrs: { type: "button" },
                                 on: {
                                   click: function ($event) {
@@ -6948,36 +6978,280 @@ var render = function () {
     _vm._m(0),
     _vm._v(" "),
     _c("div", { staticClass: "page-body" }, [
-      _c("div", { staticClass: "card" }, [
-        _c("form", [
-          _c("div", { staticClass: "card-body" }, [
-            _vm._m(1),
-            _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _vm._m(2),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-3 col-md-3 col-xl-3" }, [
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", { staticClass: "form-label" }, [
-                    _vm._v("STATE of ORIGIN"),
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "select",
-                    {
+      _c("div", [
+        _c(
+          "form",
+          {
+            attrs: { method: "post" },
+            on: {
+              submit: function ($event) {
+                $event.preventDefault()
+                return _vm.checkForm.apply(null, arguments)
+              },
+            },
+          },
+          [
+            _c("div", { staticClass: "card-body" }, [
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-sm-3 col-md-3 col-xl-3" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { staticClass: "form-label" }, [
+                      _vm._v("Registration Num"),
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
                       directives: [
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.myObject.StateId,
-                          expression: "myObject.StateId",
+                          value: _vm.objectBody.regNumber,
+                          expression: "objectBody.regNumber",
                         },
                       ],
                       staticClass: "form-control form-control-inverse",
-                      attrs: { name: "state", required: "" },
+                      attrs: { type: "text", name: "reg_no" },
+                      domProps: { value: _vm.objectBody.regNumber },
                       on: {
-                        change: [
-                          function ($event) {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.objectBody,
+                            "regNumber",
+                            $event.target.value
+                          )
+                        },
+                      },
+                    }),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-3 col-md-3 col-xl-3" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { staticClass: "form-label" }, [
+                      _vm._v("First Name"),
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.objectBody.firstName,
+                          expression: "objectBody.firstName",
+                        },
+                      ],
+                      staticClass: "form-control form-control-inverse",
+                      attrs: { type: "text", name: "fname" },
+                      domProps: { value: _vm.objectBody.firstName },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.objectBody,
+                            "firstName",
+                            $event.target.value
+                          )
+                        },
+                      },
+                    }),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-3 col-md-3 col-xl-3" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { staticClass: "form-label" }, [
+                      _vm._v("Surname"),
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.objectBody.surname,
+                          expression: "objectBody.surname",
+                        },
+                      ],
+                      staticClass: "form-control form-control-inverse",
+                      attrs: { type: "text", name: "surname" },
+                      domProps: { value: _vm.objectBody.surname },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.objectBody,
+                            "surname",
+                            $event.target.value
+                          )
+                        },
+                      },
+                    }),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-3 col-md-3 col-xl-3" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { staticClass: "form-label" }, [
+                      _vm._v("Last Name"),
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.objectBody.lastName,
+                          expression: "objectBody.lastName",
+                        },
+                      ],
+                      staticClass: "form-control form-control-inverse",
+                      attrs: { type: "text", name: "lname" },
+                      domProps: { value: _vm.objectBody.lastName },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.objectBody,
+                            "lastName",
+                            $event.target.value
+                          )
+                        },
+                      },
+                    }),
+                  ]),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-sm-6 col-md-6 col-xl-6" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { staticClass: "form-label" }, [
+                      _vm._v("Address"),
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.objectBody.address,
+                          expression: "objectBody.address",
+                        },
+                      ],
+                      staticClass: "form-control form-control-inverse",
+                      attrs: { type: "text", name: "address" },
+                      domProps: { value: _vm.objectBody.address },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.objectBody,
+                            "address",
+                            $event.target.value
+                          )
+                        },
+                      },
+                    }),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-3 col-md-3 col-xl-3" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { staticClass: "form-label" }, [
+                      _vm._v("State of Origin"),
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.myObject.StateId,
+                            expression: "myObject.StateId",
+                          },
+                        ],
+                        staticClass: "form-control form-control-inverse",
+                        attrs: { name: "state", required: "" },
+                        on: {
+                          change: [
+                            function ($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function (o) {
+                                  return o.selected
+                                })
+                                .map(function (o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.myObject,
+                                "StateId",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            },
+                            function ($event) {
+                              return _vm.getLga()
+                            },
+                          ],
+                        },
+                      },
+                      _vm._l(_vm.States, function (State) {
+                        return _c(
+                          "option",
+                          {
+                            key: State.stateId,
+                            attrs: { required: "" },
+                            domProps: { value: State.stateId },
+                          },
+                          [
+                            _vm._v(
+                              "\n                    " +
+                                _vm._s(State.name) +
+                                "\n                  "
+                            ),
+                          ]
+                        )
+                      }),
+                      0
+                    ),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-3 col-md-3 col-xl-3" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { staticClass: "form-label" }, [
+                      _vm._v("Local Govt Area"),
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.myObject.LocalGovt,
+                            expression: "myObject.LocalGovt",
+                          },
+                        ],
+                        staticClass: "form-control form-control-inverse",
+                        attrs: { name: "lga", required: "" },
+                        on: {
+                          change: function ($event) {
                             var $$selectedVal = Array.prototype.filter
                               .call($event.target.options, function (o) {
                                 return o.selected
@@ -6988,224 +7262,458 @@ var render = function () {
                               })
                             _vm.$set(
                               _vm.myObject,
-                              "StateId",
+                              "LocalGovt",
                               $event.target.multiple
                                 ? $$selectedVal
                                 : $$selectedVal[0]
                             )
                           },
-                          function ($event) {
-                            return _vm.getLga()
+                        },
+                      },
+                      _vm._l(_vm.localGovt, function (lgalist) {
+                        return _c(
+                          "option",
+                          {
+                            key: lgalist.Code,
+                            attrs: { required: "" },
+                            domProps: { value: lgalist.Code },
+                          },
+                          [
+                            _vm._v(
+                              "\n                    " +
+                                _vm._s(lgalist.lgaName) +
+                                "\n                  "
+                            ),
+                          ]
+                        )
+                      }),
+                      0
+                    ),
+                  ]),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-sm-3 col-md-3 col-xl-3" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { staticClass: "form-label" }, [
+                      _vm._v("Religion"),
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.objectBody.religion,
+                            expression: "objectBody.religion",
                           },
                         ],
-                      },
-                    },
-                    _vm._l(_vm.states, function (State) {
-                      return _c(
-                        "option",
-                        {
-                          key: State.stateId,
-                          attrs: { required: "" },
-                          domProps: { value: State.stateId },
-                        },
-                        [
-                          _vm._v(
-                            "\n                  " +
-                              _vm._s(State.name) +
-                              "\n                  "
-                          ),
-                        ]
-                      )
-                    }),
-                    0
-                  ),
-                ]),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-3 col-md-3 col-xl-3" }, [
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", { staticClass: "form-label" }, [_vm._v("LGA")]),
-                  _vm._v(" "),
-                  _c(
-                    "select",
-                    {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.myObject.LocalGovt,
-                          expression: "myObject.LocalGovt",
-                        },
-                      ],
-                      staticClass: "form-control form-control-inverse",
-                      attrs: { name: "lga", required: "" },
-                      on: {
-                        change: function ($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function (o) {
-                              return o.selected
-                            })
-                            .map(function (o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.$set(
-                            _vm.myObject,
-                            "LocalGovt",
-                            $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          )
+                        staticClass: "form-control form-control-inverse",
+                        attrs: { name: "religion", required: "" },
+                        on: {
+                          change: function ($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function (o) {
+                                return o.selected
+                              })
+                              .map(function (o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.objectBody,
+                              "religion",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          },
                         },
                       },
-                    },
-                    _vm._l(_vm.localGovt, function (lgalist) {
-                      return _c(
-                        "option",
-                        {
-                          key: lgalist.Code,
-                          attrs: { required: "" },
-                          domProps: { value: lgalist.Code },
-                        },
-                        [
-                          _vm._v(
-                            "\n                    " +
-                              _vm._s(lgalist.lgaName) +
-                              "\n                  "
-                          ),
-                        ]
-                      )
-                    }),
-                    0
-                  ),
-                ]),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-sm-3 col-md-3 col-xl-3" }, [
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", { staticClass: "form-label" }, [
-                    _vm._v("RELIGION"),
+                      _vm._l(_vm.Religions, function (Reli) {
+                        return _c(
+                          "option",
+                          {
+                            key: Reli.ReligionId,
+                            attrs: { required: "" },
+                            domProps: { value: Reli.ReligionId },
+                          },
+                          [
+                            _vm._v(
+                              "\n                    " +
+                                _vm._s(Reli.name) +
+                                "\n                  "
+                            ),
+                          ]
+                        )
+                      }),
+                      0
+                    ),
                   ]),
-                  _vm._v(" "),
-                  _c(
-                    "select",
-                    {
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "col-sm-3 col-md-3 col-xl-3" },
+                  [
+                    _c("label", { staticClass: "form-label" }, [
+                      _vm._v("Date of Birth"),
+                    ]),
+                    _vm._v(" "),
+                    _c("vuejsDatepicker", {
+                      attrs: {
+                        "input-class": "form-control",
+                        type: "date_1",
+                        name: "date_1",
+                      },
+                      model: {
+                        value: _vm.objectBody.dateOfBirth,
+                        callback: function ($$v) {
+                          _vm.$set(_vm.objectBody, "dateOfBirth", $$v)
+                        },
+                        expression: "objectBody.dateOfBirth",
+                      },
+                    }),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-3 col-md-3 col-xl-3" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { staticClass: "form-label" }, [
+                      _vm._v("Phone"),
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
                       directives: [
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.objectBody.religion,
-                          expression: "objectBody.religion",
+                          value: _vm.objectBody.phoneNumber,
+                          expression: "objectBody.phoneNumber",
                         },
                       ],
                       staticClass: "form-control form-control-inverse",
-                      attrs: { name: "religion", required: "" },
+                      attrs: { type: "number", name: "phonenumber_1" },
+                      domProps: { value: _vm.objectBody.phoneNumber },
                       on: {
-                        change: function ($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function (o) {
-                              return o.selected
-                            })
-                            .map(function (o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
                           _vm.$set(
                             _vm.objectBody,
-                            "religion",
-                            $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
+                            "phoneNumber",
+                            $event.target.value
                           )
                         },
                       },
-                    },
-                    _vm._l(_vm.Religions, function (Religion) {
-                      return _c(
-                        "option",
-                        {
-                          key: Religion.ReligionId,
-                          attrs: { required: "" },
-                          domProps: { value: Religion.ReligionId },
-                        },
-                        [
-                          _vm._v(
-                            "\n                  " +
-                              _vm._s(Religion.name) +
-                              "\n                  "
-                          ),
-                        ]
-                      )
                     }),
-                    0
-                  ),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-3 col-md-3 col-xl-3" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { staticClass: "form-label" }, [
+                      _vm._v(" Alt Phone"),
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.objectBody.alt_PhoneNumber,
+                          expression: "objectBody.alt_PhoneNumber",
+                        },
+                      ],
+                      staticClass: "form-control form-control-inverse",
+                      attrs: { type: "number", name: "phonenumber_2" },
+                      domProps: { value: _vm.objectBody.alt_PhoneNumber },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.objectBody,
+                            "alt_PhoneNumber",
+                            $event.target.value
+                          )
+                        },
+                      },
+                    }),
+                  ]),
                 ]),
               ]),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "col-sm-3 col-md-3 col-xl-3" },
-                [
-                  _c("label", { staticClass: "form-label" }, [
-                    _vm._v("DATE of BIRTH"),
+              _c("div", { staticClass: "row" }, [
+                _c(
+                  "div",
+                  { staticClass: "col-sm-3 col-md-3 col-xl-3 m-b-30" },
+                  [
+                    _c("label", { staticClass: "form-label" }, [
+                      _vm._v("Admission Date"),
+                    ]),
+                    _vm._v(" "),
+                    _c("vuejsDatepicker", {
+                      attrs: {
+                        "input-class": "form-control",
+                        type: "date_2",
+                        name: "date_2",
+                      },
+                      model: {
+                        value: _vm.objectBody.dateOfAdmission,
+                        callback: function ($$v) {
+                          _vm.$set(_vm.objectBody, "dateOfAdmission", $$v)
+                        },
+                        expression: "objectBody.dateOfAdmission",
+                      },
+                    }),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-3 col-md-3 col-xl-3" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { staticClass: "form-label" }, [
+                      _vm._v("Program"),
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.objectBody.program,
+                            expression: "objectBody.program",
+                          },
+                        ],
+                        staticClass: "form-control form-control-inverse",
+                        attrs: { type: "text", name: "program" },
+                        on: {
+                          change: function ($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function (o) {
+                                return o.selected
+                              })
+                              .map(function (o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.objectBody,
+                              "program",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          },
+                        },
+                      },
+                      _vm._l(_vm.Programs, function (prog) {
+                        return _c(
+                          "option",
+                          {
+                            key: prog.programId,
+                            attrs: { required: "" },
+                            domProps: { value: prog.programId },
+                          },
+                          [
+                            _vm._v(
+                              "\n                    " +
+                                _vm._s(prog.prog_name) +
+                                "\n                  "
+                            ),
+                          ]
+                        )
+                      }),
+                      0
+                    ),
                   ]),
-                  _vm._v(" "),
-                  _c("vuejsDatepicker", {
-                    attrs: {
-                      "input-class": "form-control",
-                      type: "date_1",
-                      name: "admissiondate",
-                      required: "",
-                      readonly: "",
-                    },
-                  }),
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _vm._m(3),
-              _vm._v(" "),
-              _vm._m(4),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _vm._m(5),
-              _vm._v(" "),
-              _vm._m(6),
-              _vm._v(" "),
-              _vm._m(7),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "col-sm-3 col-md-3 col-xl-3" },
-                [
-                  _c("label", { staticClass: "form-label" }, [
-                    _vm._v("ADMISSION DATE"),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-3 col-md-3 col-xl-3" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { staticClass: "form-label" }, [
+                      _vm._v("Department"),
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.objectBody.department,
+                            expression: "objectBody.department",
+                          },
+                        ],
+                        staticClass: "form-control form-control-inverse",
+                        attrs: { type: "text", name: "dept" },
+                        on: {
+                          change: function ($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function (o) {
+                                return o.selected
+                              })
+                              .map(function (o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.objectBody,
+                              "department",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          },
+                        },
+                      },
+                      _vm._l(_vm.Depts, function (depart) {
+                        return _c(
+                          "option",
+                          {
+                            key: depart.departmentId,
+                            attrs: { required: "" },
+                            domProps: { value: depart.departmentId },
+                          },
+                          [
+                            _vm._v(
+                              "\n                    " +
+                                _vm._s(depart.dept_name) +
+                                "\n                  "
+                            ),
+                          ]
+                        )
+                      }),
+                      0
+                    ),
                   ]),
-                  _vm._v(" "),
-                  _c("vuejsDatepicker", {
-                    attrs: {
-                      "input-class": "form-control",
-                      type: "date_2",
-                      name: "admissiondate",
-                      required: "",
-                      readonly: "",
-                    },
-                  }),
-                ],
-                1
-              ),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-3 col-md-3 col-xl-3" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { staticClass: "form-label" }, [
+                      _vm._v("Course"),
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.objectBody.course,
+                            expression: "objectBody.course",
+                          },
+                        ],
+                        staticClass: "form-control form-control-inverse",
+                        attrs: { type: "text", name: "course" },
+                        on: {
+                          change: function ($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function (o) {
+                                return o.selected
+                              })
+                              .map(function (o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.objectBody,
+                              "course",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          },
+                        },
+                      },
+                      _vm._l(_vm.Courses, function (cour) {
+                        return _c(
+                          "option",
+                          {
+                            key: cour.courseId,
+                            attrs: { required: "" },
+                            domProps: { value: cour.courseId },
+                          },
+                          [
+                            _vm._v(
+                              "\n                    " +
+                                _vm._s(cour.course_name) +
+                                "\n                  "
+                            ),
+                          ]
+                        )
+                      }),
+                      0
+                    ),
+                  ]),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "btn-group mr-3 sw-btn-group-extra",
+                    attrs: { role: "group" },
+                  },
+                  [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-submit btn-primary",
+                        attrs: { type: "Submit" },
+                        on: {
+                          click: function ($event) {
+                            $event.preventDefault()
+                            return _vm.postPost()
+                          },
+                        },
+                      },
+                      [_vm._v(" Submit ")]
+                    ),
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "btn-group mr-3 sw-btn-group-extra",
+                    attrs: { role: "group" },
+                  },
+                  [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-danger",
+                        on: {
+                          click: function ($event) {
+                            $event.preventDefault()
+                            return _vm.onCancel()
+                          },
+                        },
+                      },
+                      [_vm._v("Cancel")]
+                    ),
+                  ]
+                ),
+              ]),
             ]),
-            _vm._v(" "),
-            _vm._m(8),
-          ]),
-        ]),
+          ]
+        ),
       ]),
     ]),
-    _vm._v(" "),
-    _vm._m(9),
   ])
 }
 var staticRenderFns = [
@@ -7224,253 +7732,6 @@ var staticRenderFns = [
                 ]),
               ]),
             ]),
-          ]),
-        ]),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-sm-3 col-md-3 col-xl-3" }, [
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { staticClass: "form-label" }, [
-            _vm._v("REGISTRATION NUM"),
-          ]),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "form-control form-control-inverse",
-            attrs: { type: "text", name: "reg_no" },
-          }),
-        ]),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-3 col-md-3 col-xl-3" }, [
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { staticClass: "form-label" }, [_vm._v("FIRST NAME")]),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "form-control form-control-inverse",
-            attrs: { type: "text", name: "fname" },
-          }),
-        ]),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-3 col-md-3 col-xl-3" }, [
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { staticClass: "form-label" }, [_vm._v("SURNAME")]),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "form-control form-control-inverse",
-            attrs: { type: "text", name: "surname" },
-          }),
-        ]),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-3 col-md-3 col-xl-3" }, [
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { staticClass: "form-label" }, [_vm._v("LAST NAME")]),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "form-control form-control-inverse",
-            attrs: { type: "text", name: "lname" },
-          }),
-        ]),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-6 col-md-6 col-xl-6" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { staticClass: "form-label" }, [_vm._v("ADDRESS")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control form-control-inverse",
-          attrs: { type: "text", name: "address" },
-        }),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-3 col-md-3 col-xl-3" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { staticClass: "form-label" }, [_vm._v("PHONE NUMBER")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control form-control-inverse",
-          attrs: { type: "number", name: "phonenumber_1" },
-        }),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-3 col-md-3 col-xl-3" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { staticClass: "form-label" }, [
-          _vm._v(" ALT PHONE NUMBER"),
-        ]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control form-control-inverse",
-          attrs: { type: "number", name: "phonenumber_2" },
-        }),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-3 col-md-3 col-xl-3" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { staticClass: "form-label" }, [_vm._v("PROGRAM")]),
-        _vm._v(" "),
-        _c(
-          "select",
-          {
-            staticClass: "form-control form-control-inverse",
-            attrs: { type: "text", name: "program" },
-          },
-          [_c("option")]
-        ),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-3 col-md-3 col-xl-3" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { staticClass: "form-label" }, [_vm._v("DEPARTMENT")]),
-        _vm._v(" "),
-        _c(
-          "select",
-          {
-            staticClass: "form-control form-control-inverse",
-            attrs: { type: "text", name: "dept" },
-          },
-          [_c("option")]
-        ),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-3 col-md-3 col-xl-3" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { staticClass: "form-label" }, [_vm._v("COURSE")]),
-        _vm._v(" "),
-        _c(
-          "select",
-          {
-            staticClass: "form-control form-control-inverse",
-            attrs: { type: "text", name: "course" },
-          },
-          [_c("option")]
-        ),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-6" }, [
-        _c(
-          "div",
-          {
-            staticClass: "btn-group mr-3 sw-btn-group-extra",
-            attrs: { role: "group" },
-          },
-          [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-submit btn-primary",
-                attrs: { type: "submit" },
-              },
-              [_vm._v("\n                  Create\n                ")]
-            ),
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "btn-group mr-3 sw-btn-group-extra",
-            attrs: { role: "group" },
-          },
-          [_c("button", { staticClass: "btn btn-danger" }, [_vm._v("Cancel")])]
-        ),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("div", { staticClass: "page-wrapper" }, [
-        _c("div", { staticClass: "page-header" }, [
-          _c("div", { staticClass: "row align-items-end" }, [
-            _c("div", { staticClass: "col-lg-8" }, [
-              _c("div", { staticClass: "page-header-title" }, [
-                _c("div", { staticClass: "d-inline" }, [
-                  _c("h4", [_vm._v("STUDENTS LIST TABLE")]),
-                  _vm._v(" "),
-                  _c("span", [_vm._v("THE LIST OF STUDENTS")]),
-                ]),
-              ]),
-            ]),
-          ]),
-        ]),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "page-body" }, [
-        _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "card-body" }, [
-            _c(
-              "table",
-              {
-                staticClass: "table table-striped",
-                staticStyle: { width: "100%" },
-                attrs: { id: "datatables-buttons" },
-              },
-              [
-                _c("thead", [
-                  _c("tr", [
-                    _c("th", [_vm._v("Registration No")]),
-                    _vm._v(" "),
-                    _c("th", [_vm._v("Surname")]),
-                    _vm._v(" "),
-                    _c("th", [_vm._v("First Name")]),
-                    _vm._v(" "),
-                    _c("th", [_vm._v("Department")]),
-                    _vm._v(" "),
-                    _c("th", [_vm._v("Admission Date")]),
-                    _vm._v(" "),
-                    _c("th", [_vm._v("Contact No")]),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c("tbody"),
-              ]
-            ),
           ]),
         ]),
       ]),

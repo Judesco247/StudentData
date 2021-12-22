@@ -1,5 +1,152 @@
-﻿@*@{
-    ViewBag.Title = "Registration Page";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+﻿@model StudentData.Models.StudentReg
+@using Microsoft.AspNetCore.Http
+@{
+    ViewData["Title"] = "StudentRegistration";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>StudentData</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+
+
+</head>
+
+<body>
+    @*<h3>Student Registration</h3> <br />*@
+    <div class="pagetitle">
+      <h1>Student Registration</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active">New Student</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+@*@using (Html.BeginForm("Form2", "Home", FormMethod.Post))
+{ 
+    <table>
+        <tr>
+            <td>Enter First Name: </td>
+            <td>@Html.TextBoxFor(m => m.FirstName)</td>
+        </tr>
+        <tr>
+            <td>Enter Surname: </td>
+            <td>@Html.TextBoxFor(m => m.Surname)</td>
+        </tr>
+        <tr>
+            <td>Enter Last Name: </td>
+            <td>@Html.TextBoxFor(m => m.LastName)</td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Submit Form" /></td>
+        </tr>
+    </table>
 }*@
-<student-registration />
+
+<div class="container">
+    <div class="col-md-12">
+        <form asp-action="StudentReg" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <label class="control-label">Registration Number</label>
+                    <input asp-for="RegNumber" class="form-control" />
+                    <span asp-validation-for="RegNumber" class="text-danger"></span>
+                </div>
+                <div class="col-md-4">
+                    <label class="control-label">Surname</label>
+                    <input asp-for="Surname" class="form-control" />
+                    <span asp-validation-for="Surname" class="text-danger"></span>
+                </div>
+                <div class="col-md-4">
+                    <label class="control-label">Othernames</label>
+                    <input asp-for="OtherNames" class="form-control" />
+                    <span asp-validation-for="OtherNames" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="control-label">Adress</label>
+                    <input asp-for="Address" class="form-control" />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+                <div class="col-md-4">
+                        <label class="control-label">State of Origin</label>
+                        <select asp-for="States" id="ddstate"
+                                class="form-control"
+                                asp-items="@(new SelectList(Model.States,"Value", "Text"))">
+                        </select>
+                        <span asp-validation-for="States" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="control-label">LGA</label>
+                        @*<input asp-for="LocalGovt" class="form-control" />*@
+                        <select asp-for="LocalGovt" id="ddlocalGovt"
+                                class="form-control">
+                        </select>
+                        <span asp-validation-for="LocalGovt" class="text-danger"></span>
+                    </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+            var stateid = $('#ddstate');
+            stateid.append($("<option></option>").val('').html('select state'));
+            $.ajax({
+                url: '/StudentReg/getAllState',
+                dataType: 'json',
+                type: 'Get',
+                success: function (d) {
+                    $.each(d, function (i, state) {
+                        stateid.append($("<option></option>").val(state.StateId).html(state.Name));
+                    });
+                },
+                error: function () {
+                    alert('Error');
+                }
+            });
+
+            $("#ddstate").change(function () {
+                var StateId = parseInt($(this).val());
+
+                if (!isNaN(StateId)) {
+                    var localgovt = $("#ddlocalGovt");
+                    localgovt.empty();
+                    localgovt.append($("<option></option>").val('').html('Please Wait....'));
+                    debugger;
+                    $.ajax({
+                        url: '/StudentReg/getLGA',
+                        type: 'Get',
+                        dataType: 'json',
+                        data: { StateId: StateId },
+                        success: function (d) {
+                            localgovt.empty();
+                            localgovt.append($("<option></option>").val('').html('Select LGA'));
+                            $.each(d, function (i, lga) {
+                                alert(lga.Value)
+                                localgovt.append($("<option></option>").val(lga.Id).html(lga.lgaName));
+                            });
+
+                        },
+                        error: function () {
+                            alert('Error');
+                        }
+                    });
+                }
+            });
+        });
+</script>
+</body>
+</html>

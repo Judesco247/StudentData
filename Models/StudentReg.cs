@@ -13,17 +13,15 @@ namespace StudentData.Models
         [StringLength(10)]
         public string RegNumber { get; set; }
         [StringLength(20)]
-        public string FirstName { get; set; }
-        [StringLength(20)]
         public string Surname { get; set; }
         [StringLength(20)]
-        public string LastName { get; set; }
+        public string OtherNames { get; set; }
         [StringLength(100)]
         public string Address { get; set; }
         [StringLength(20)]
-        public string StateOfOrigin { get; set; }
+        public string States { get; set; }
         [StringLength(20)]
-        public string LGA { get; set;  }
+        public string LocalGovt { get; set;  }
         [StringLength(15)]
         public string Religion { get; set; }
         public DateTime? DateOfBirth { get; set; }

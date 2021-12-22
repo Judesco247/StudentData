@@ -198,7 +198,7 @@
                   <td>
                     <button
                       type="button"
-                      class="btn btn-submit btn-primary"
+                      class="btn btn-submit btn-primary btn-sm btn-block"
                       @click="editStates(StatesInfo.stateId)"
                     >
                       Edit

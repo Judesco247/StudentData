@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StudentData.Data;
 
 namespace StudentData.Migrations
 {
     [DbContext(typeof(DBContext_Class.StudentDataContext))]
-    partial class StudentDataContextModelSnapshot : ModelSnapshot
+    [Migration("20211222125703_removal of course, department, programs and Religion from the database")]
+    partial class removalofcoursedepartmentprogramsandReligionfromthedatabase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -78,8 +80,8 @@ namespace StudentData.Migrations
                     b.Property<string>("Alt_PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Course")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("DateOfAdmission")
                         .HasColumnType("datetime2");
@@ -87,34 +89,38 @@ namespace StudentData.Migrations
                     b.Property<DateTime?>("DateOfBirth")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Department")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("DepartmentId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("LocalGovt")
+                    b.Property<string>("FirstName")
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<string>("OtherNames")
+                    b.Property<string>("LastName")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("LocalGovt")
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Program")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("ProgramId")
+                        .HasColumnType("int");
 
                     b.Property<string>("RegNumber")
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
-                    b.Property<string>("Religion")
+                    b.Property<int>("ReligionId")
                         .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)");
+                        .HasColumnType("int");
 
-                    b.Property<string>("States")
+                    b.Property<int>("StateId")
                         .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("int");
 
                     b.Property<string>("Surname")
                         .HasMaxLength(20)

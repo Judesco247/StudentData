@@ -19,10 +19,6 @@ namespace StudentData.Data
             public DbSet<StudentReg> StudentReg { get; set; }
             public DbSet<States> States { get; set; }
             public DbSet<LocalGovt> LocalGovt { get; set; }
-            public DbSet<Courses> Courses { get; set; }
-            public DbSet<Departments> Departments { get; set; }
-            public DbSet<Programs> Programs { get; set; }
-            public DbSet<Religions> Religions { get; set; }
         }
     }
 }

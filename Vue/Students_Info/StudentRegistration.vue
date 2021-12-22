@@ -17,46 +17,50 @@
     </div>
 
     <div class="page-body">
-      <div class="card">
-        <form>
+      <div>
+        <form @submit.prevent="checkForm" method="post">
           <div class="card-body">
             <div class="row">
               <div class="col-sm-3 col-md-3 col-xl-3">
                 <div class="form-group">
-                  <label class="form-label">REGISTRATION NUM</label>
+                  <label class="form-label">Registration Num</label>
                   <input
                     type="text"
                     name="reg_no"
+                    v-model="objectBody.regNumber"
                     class="form-control form-control-inverse"
                   />
                 </div>
               </div>
               <div class="col-sm-3 col-md-3 col-xl-3">
                 <div class="form-group">
-                  <label class="form-label">FIRST NAME</label>
+                  <label class="form-label">First Name</label>
                   <input
                     type="text"
                     name="fname"
+                    v-model="objectBody.firstName"
                     class="form-control form-control-inverse"
                   />
                 </div>
               </div>
               <div class="col-sm-3 col-md-3 col-xl-3">
                 <div class="form-group">
-                  <label class="form-label">SURNAME</label>
+                  <label class="form-label">Surname</label>
                   <input
                     type="text"
                     name="surname"
+                    v-model="objectBody.surname"
                     class="form-control form-control-inverse"
                   />
                 </div>
               </div>
               <div class="col-sm-3 col-md-3 col-xl-3">
                 <div class="form-group">
-                  <label class="form-label">LAST NAME</label>
+                  <label class="form-label">Last Name</label>
                   <input
                     type="text"
                     name="lname"
+                    v-model="objectBody.lastName"
                     class="form-control form-control-inverse"
                   />
                 </div>
@@ -65,17 +69,18 @@
             <div class="row">
               <div class="col-sm-6 col-md-6 col-xl-6">
                 <div class="form-group">
-                  <label class="form-label">ADDRESS</label>
+                  <label class="form-label">Address</label>
                   <input
                     type="text"
                     name="address"
+                    v-model="objectBody.address"
                     class="form-control form-control-inverse"
                   />
                 </div>
               </div>
               <div class="col-sm-3 col-md-3 col-xl-3">
                 <div class="form-group">
-                  <label class="form-label">STATE of ORIGIN</label>
+                  <label class="form-label">State of Origin</label>
                   <select
                     v-model="myObject.StateId"
                     @change="getLga()"
@@ -84,19 +89,19 @@
                     required
                   >
                     <option
-                      v-for="State in states"
+                      v-for="State in States"
                       v-bind:value="State.stateId"
                       v-bind:key="State.stateId"
                       required
                     >
-                    {{ State.name }}
+                      {{ State.name }}
                     </option>
                   </select>
                 </div>
               </div>
               <div class="col-sm-3 col-md-3 col-xl-3">
                 <div class="form-group">
-                  <label class="form-label">LGA</label>
+                  <label class="form-label">Local Govt Area</label>
                   <select
                     v-model="myObject.LocalGovt"
                     name="lga"
@@ -118,7 +123,7 @@
             <div class="row">
               <div class="col-sm-3 col-md-3 col-xl-3">
                 <div class="form-group">
-                  <label class="form-label">RELIGION</label>
+                  <label class="form-label">Religion</label>
                   <select
                     v-model="objectBody.religion"
                     name="religion"
@@ -126,186 +131,168 @@
                     required
                   >
                     <option
-                      v-for="Religion in Religions"
-                      v-bind:value="Religion.ReligionId"
-                      v-bind:key="Religion.ReligionId"
+                      v-for="Reli in Religions"
+                      v-bind:value="Reli.ReligionId"
+                      v-bind:key="Reli.ReligionId"
                       required
                     >
-                    {{ Religion.name }}
+                      {{ Reli.name }}
                     </option>
                   </select>
                 </div>
               </div>
               <div class="col-sm-3 col-md-3 col-xl-3">
-                <label class="form-label">DATE of BIRTH</label>
+                <label class="form-label">Date of Birth</label>
                 <vuejsDatepicker
                   input-class="form-control"
                   type="date_1"
-                  name="admissiondate"
-                  required
-                  readonly
+                  name="date_1"
+                  v-model="objectBody.dateOfBirth"
                 >
                 </vuejsDatepicker>
               </div>
               <div class="col-sm-3 col-md-3 col-xl-3">
                 <div class="form-group">
-                  <label class="form-label">PHONE NUMBER</label>
+                  <label class="form-label">Phone</label>
                   <input
                     type="number"
                     name="phonenumber_1"
+                    v-model="objectBody.phoneNumber"
                     class="form-control form-control-inverse"
                   />
                 </div>
               </div>
               <div class="col-sm-3 col-md-3 col-xl-3">
                 <div class="form-group">
-                  <label class="form-label"> ALT PHONE NUMBER</label>
+                  <label class="form-label"> Alt Phone</label>
                   <input
                     type="number"
                     name="phonenumber_2"
+                    v-model="objectBody.alt_PhoneNumber"
                     class="form-control form-control-inverse"
                   />
                 </div>
               </div>
             </div>
             <div class="row">
-              <div class="col-sm-3 col-md-3 col-xl-3">
-                <div class="form-group">
-                  <label class="form-label">PROGRAM</label>
-                  <select
-                    type="text"
-                    name="program"
-                    class="form-control form-control-inverse"
-                  >
-                    <option></option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-sm-3 col-md-3 col-xl-3">
-                <div class="form-group">
-                  <label class="form-label">DEPARTMENT</label>
-                  <select
-                    type="text"
-                    name="dept"
-                    class="form-control form-control-inverse"
-                  >
-                    <option></option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-sm-3 col-md-3 col-xl-3">
-                <div class="form-group">
-                  <label class="form-label">COURSE</label>
-                  <select
-                    type="text"
-                    name="course"
-                    class="form-control form-control-inverse"
-                  >
-                    <option></option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-sm-3 col-md-3 col-xl-3">
-                <label class="form-label">ADMISSION DATE</label>
+              <div class="col-sm-3 col-md-3 col-xl-3 m-b-30">
+                <label class="form-label">Admission Date</label>
                 <vuejsDatepicker
                   input-class="form-control"
                   type="date_2"
-                  name="admissiondate"
-                  required
-                  readonly
+                  name="date_2"
+                  v-model="objectBody.dateOfAdmission"
                 >
                 </vuejsDatepicker>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-6">
-                <div role="group" class="btn-group mr-3 sw-btn-group-extra">
-                  <button type="submit" class="btn btn-submit btn-primary">
-                    Create
-                  </button>
-                </div>
-                <div role="group" class="btn-group mr-3 sw-btn-group-extra">
-                  <button class="btn btn-danger">Cancel</button>
+              <div class="col-sm-3 col-md-3 col-xl-3">
+                <div class="form-group">
+                  <label class="form-label">Program</label>
+                  <select
+                    type="text"
+                    name="program"
+                    v-model="objectBody.program"
+                    class="form-control form-control-inverse"
+                  >
+                    <option
+                      v-for="prog in Programs"
+                      v-bind:value="prog.programId"
+                      v-bind:key="prog.programId"
+                      required
+                    >
+                      {{ prog.prog_name }}
+                    </option>
+                  </select>
                 </div>
               </div>
+              <div class="col-sm-3 col-md-3 col-xl-3">
+                <div class="form-group">
+                  <label class="form-label">Department</label>
+                  <select
+                    type="text"
+                    name="dept"
+                    v-model="objectBody.department"
+                    class="form-control form-control-inverse"
+                  >
+                    <option
+                      v-for="depart in Depts"
+                      v-bind:value="depart.departmentId"
+                      v-bind:key="depart.departmentId"
+                      required
+                    >
+                      {{ depart.dept_name }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-sm-3 col-md-3 col-xl-3">
+                <div class="form-group">
+                  <label class="form-label">Course</label>
+                  <select
+                    type="text"
+                    name="course"
+                    v-model="objectBody.course"
+                    class="form-control form-control-inverse"
+                  >
+                    <option
+                      v-for="cour in Courses"
+                      v-bind:value="cour.courseId"
+                      v-bind:key="cour.courseId"
+                      required
+                    >
+                      {{ cour.course_name }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <!-- <div class="col-sm-3 col-md-3 col-xl-3 m-b-30">
+                <label class="form-label">Admission Date</label>
+                <vuejsDatepicker
+                  input-class="form-control"
+                  type="date_2"
+                  name="date_2"
+                  v-model="date_2"
+                >
+                </vuejsDatepicker>
+              </div> -->
+            </div>
+            <div class="row">
+                <!-- <div role="group" class="btn-group mr-3 sw-btn-group-extra">
+                  <button
+                    v-if="
+                      this.objectBody.reg_no != '' &&
+                      this.objectBody.fname != '' &&
+                      this.objectBody.surname != '' &&
+                      this.objectBody.lname != '' &&
+                      this.objectBody.address != '' &&
+                      this.objectBody.state != '' &&
+                      this.objectBody.lga != '' &&
+                      this.objectBody.religion != '' &&
+                      this.objectBody.date_1 != '' &&
+                      this.objectBody.phonenumber_1 != '' &&
+                      this.objectBody.phonenumber_2 != '' &&
+                      this.objectBody.program != '' &&
+                      this.objectBody.dept != '' &&
+                      this.objectBody.course != '' &&
+                      this.objectBody.date_2 != ''
+                    "
+                    v-on:click="checkForm"
+                    type="submit"
+                    class="btn btn-submit btn-primary"
+                  >
+                    {{ CreateOrUpdate }}
+                  </button>
+                </div> -->
+                
+                <div role="group" class="btn-group mr-3 sw-btn-group-extra">
+                  <button type="Submit" class="btn btn-submit btn-primary" @click.prevent="postPost()"> Submit </button>
+                </div>
+                <div role="group" class="btn-group mr-3 sw-btn-group-extra">
+                  <button class="btn btn-danger" @click.prevent="onCancel()">Cancel</button>
+                </div>
             </div>
           </div>
         </form>
-      </div>
-    </div>
-
-    <!-- ASSET TABLE -->
-    <div>
-      <div class="page-wrapper">
-        <div class="page-header">
-          <div class="row align-items-end">
-            <div class="col-lg-8">
-              <div class="page-header-title">
-                <div class="d-inline">
-                  <h4>STUDENTS LIST TABLE</h4>
-                  <span>THE LIST OF STUDENTS</span>
-                </div>
-              </div>
-            </div>
-            <!-- <div class="col-lg-4">
-              <div class="page-header-breadcrumb">
-                <ul class="breadcrumb-title">
-                  <li class="breadcrumb-item">
-                    <a href="index.html"> <i class="feather icon-home"></i> </a>
-                  </li>
-                  <li class="breadcrumb-item">
-                    <a href="#!">Data Table</a>
-                  </li>
-                  <li class="breadcrumb-item">
-                    <a href="#!">Styling</a>
-                  </li>
-                </ul>
-              </div>
-            </div> -->
-          </div>
-        </div>
-      </div>
-
-      <div class="page-body">
-        <div class="card">
-          <div class="card-body">
-            <table
-              id="datatables-buttons"
-              class="table table-striped"
-              style="width: 100%"
-            >
-              <thead>
-                <tr>
-                  <th>Registration No</th>
-                  <th>Surname</th>
-                  <th>First Name</th>
-                  <th>Department</th>
-                  <th>Admission Date</th>
-                  <th>Contact No</th>
-                </tr>
-              </thead>
-              <tbody>
-                <!-- <tr v-for="(assetReg,index) in assetRegList" :key="index">
-                        <td>{{ assetReg.assetCode }}</td>
-                        <td>{{ assetReg.assetDesc }}</td>
-                        <td style="display:none;">{{ assetReg.classCode }}</td>
-                        <td style="display:none;">{{ assetReg.id }}</td>
-                        <td>{{ assetReg.classDesc }}</td>
-                        <td style="display:none;">{{ assetReg.unitCode }}</td>
-                        <td>{{ assetReg.unitDesc }}</td>
-                        <td style="display:none;">{{ assetReg.busline }}</td>
-                        <td>{{ assetReg.buslineDesc }}</td>
-                        <td>{{ assetReg.purchval }}</td>
-
-                        <td>
-                            <button type="button" class="btn btn-submit btn-primary" @click="editAssetReg(assetReg.assetCode)" >Edit</button>
-                            <button type="button" class="btn btn-submit btn-danger" @click="deleteAssetReg(assetReg.id, assetReg.assetDesc)" >Delete</button>
-                        </td>
-                    </tr> -->
-              </tbody>
-            </table>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -320,108 +307,118 @@ export default {
 
   data() {
     return {
-      isFormVisible: false,
       errors: [],
       showCreateButton: true,
       responseMessage: "",
       CreateOrUpdate: "Create",
       classList: null,
-      departments: null,
-      states: null,
+      Depts: null,
+      States: null,
       Religions: null,
-      localGovt: null,
-      course: null,
-      program: null,
+      lga: null,
+      Courses: null,
+      Programs: null,
       objectBody: {
-        reg_no: "",
-        fname: "",
+        regNumber: "",
+        firstName: "",
         surname: "",
-        lname: "",
+        lastName: "",
         address: "",
-        state: "",
-        lga: "",
-        religion: "",
-        date_1: "",
-        phonenumber_1: "",
-        phonenumber_2: "",
-        program: "",
-        dept: "",
-        course: "",
-        date_2: "",
+        stateId: "",
+        localGovt: "",
+        religionId: "",
+        dateOfBirth: "",
+        phoneNumber: "",
+        alt_PhoneNumber: "",
+        programId: "",
+        departmentId: "",
+        courseId: "",
+        dateOfAdmission: "",
       },
-      myObject: {
-        Code: "",
-        LocalGovt: "",
-        MyState: "",
-        StateId: ""
-
-      }
+      // myObject: {
+      //   Code: "",
+      //   LocalGovt: "",
+      //   MyState: "",
+      //   StateId: "",
+      // },
     };
   },
 
   mounted() {
     axios
       .get("/api/StudentReg/getAllState")
-      .then((response) => (this.states = response.data));
-     axios
-        .get("/api/StudentReg/getReligion")
-        .then((response) => (this.Religions = response.data));
+      .then((response) => (this.States = response.data));
+    axios
+      .get("/api/StudentReg/getReligion")
+      .then((response) => (this.Religions = response.data));
+    axios
+      .get("/api/StudentReg/getAllDepartment")
+      .then((response) => (this.Depts = response.data));
+    axios
+      .get("/api/StudentReg/getAllProgram")
+      .then((response) => (this.Programs = response.data));
+    axios
+      .get("/api/StudentReg/getAllCourse")
+      .then((response) => (this.Courses = response.data));
   },
 
   methods: {
-     checkForm: function (e) {
+    checkForm: function (e) {
       this.errors = [];
 
-      if (this.objectBody.reg_no == "") this.errors.push("Code required.");
+      if (this.objectBody.regNumber == "") this.errors.push("Code required.");
 
-      if (this.objectBody.fname == "")
+      if (this.objectBody.firstName == "")
         this.errors.push("Description required.");
 
       if (this.objectBody.surname == "")
         this.errors.push("Depreciation Rate required.");
 
-      if (this.objectBody.lname == "")
-        this.errors.push("Method required.");
+      if (this.objectBody.lastName == "") this.errors.push("Method required.");
 
       if (this.objectBody.address == "")
         this.errors.push("Cost Code required.");
-      
-      if (this.objectBody.state == "")
-        this.errors.push("Cost Code required.");
-      
-      if (this.objectBody.lga == "")
-        this.errors.push("Cost Code required.");
-      
-      if (this.objectBody.religion == "")
-        this.errors.push("Cost Code required.");
-      
-      if (this.objectBody.date_1 == "")
-        this.errors.push("Cost Code required.");
-      
-      if (this.objectBody.phonenumber_1 == "")
-        this.errors.push("Cost Code required.");
-      
-      if (this.objectBody.phonenumber_2 == "")
-        this.errors.push("Cost Code required.");
-      
-      if (this.objectBody.program == "")
-        this.errors.push("Cost Code required.");
-      
-      if (this.objectBody.dept == "")
-        this.errors.push("Cost Code required.");
-      
-      if (this.objectBody.course == "")
-        this.errors.push("Cost Code required.");
-      
-      if (this.objectBody.date_2 == "")
+
+      if (this.objectBody.stateId == "") this.errors.push("Cost Code required.");
+
+      if (this.objectBody.localGovt == "") this.errors.push("Cost Code required.");
+
+      if (this.objectBody.religionId == "")
         this.errors.push("Cost Code required.");
 
+      if (this.objectBody.dateOfBirth == "") this.errors.push("Cost Code required.");
+
+      if (this.objectBody.phoneNumber == "")
+        this.errors.push("Cost Code required.");
+
+      if (this.objectBody.alt_PhoneNumber == "")
+        this.errors.push("Cost Code required.");
+
+      if (this.objectBody.programId == "")
+        this.errors.push("Cost Code required.");
+
+      if (this.objectBody.departmentId == "") this.errors.push("Cost Code required.");
+
+      if (this.objectBody.courseId == "") this.errors.push("Cost Code required.");
+
+      if (this.objectBody.dateOfAdmission == "") this.errors.push("Cost Code required.");
+
       if (
+        this.objectBody.regNumber &&
+        this.objectBody.firstName &&
+        this.objectBody.surname &&
+        this.objectBody.lastName &&
+        this.objectBody.address &&
         this.objectBody.stateId &&
-        this.objectBody.name &&
-        this.objectBody.code &&
-        this.objectBody.geozoneid &&
-        this.objectBody.countryId 
+        this.objectBody.localGovt &&
+        this.objectBody.religionId &&
+        this.objectBody.dateOfBirth &&
+        this.objectBody.phoneNumber &&
+        this.objectBody.alt_PhoneNumber &&
+        this.objectBody.programId &&
+        this.objectBody.departmentId &&
+        this.objectBody.courseId &&
+        this.objectBody.dateOfAdmission
       ) {
         this.errors = [];
 
@@ -431,17 +428,53 @@ export default {
       e.preventDefault();
     },
 
+    postPost() {
+        axios
+        .post(`/api/StudentReg/addnewstudent/`, this.objectBody)
+        .then((response) => {
+          this.responseMessage = response.data.responseDescription;
+          this.canProcess = true;
+
+          if (response.data.responseCode == "200") {
+            //this Clears the Input field.
+            this.onCancel();
+          }
+        })
+        .catch((e) => {
+          this.errors.push(e);
+        });
+
+      this.$alert("Student Created Successfully!!!", "Ok", "success");
+    },
+
+    onCancel() {
+      this.errors = [];
+
+      this.objectBody.regNumber = "";
+      this.objectBody.firstName = "";
+      this.objectBody.surname = "";
+      this.objectBody.lastName = "";
+      this.objectBody.address = "";
+      this.objectBody.stateId = "";
+      this.objectBody.localGovt = "";
+      this.objectBody.religionId = "";
+      this.objectBody.dateOfBirth = "";
+      this.objectBody.phoneNumber = "";
+      this.objectBody.alt_PhoneNumber = "";
+      this.objectBody.programId = "";
+      this.objectBody.departmentId = "";
+      this.objectBody.courseId = "";
+      this.objectBody.dateOfAdmission = "";
+    },
+
     getLga() {
       axios
-            .get(
-            `/api/StudentReg/eachgetLGA/${this.myObject.StateId}`
-            )
-            .then((response) => {
-                this.localGovt = response.data;
-                console.log(response.data);
-            });
+        .get(`/api/StudentReg/eachgetLGA/${this.objectBody.stateId}`)
+        .then((response) => {
+          this.lga = response.data;
+          console.log(response.data);
+        });
     },
-    
   },
 };
 </script>
