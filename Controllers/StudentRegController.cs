@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
+using StudentData.Data;
 using StudentData.Models;
 using System;
 using System.Collections.Generic;
@@ -19,24 +20,25 @@ namespace StudentData.Controllers
         }
         public IActionResult StudentRegistration()
         {
-            var pp = new StudentReg();
-            //var constr = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-            using (SqlConnection sqlcon = new SqlConnection(connectionString))
-            {
-                using (SqlCommand cmd = new SqlCommand("", sqlcon))
-                {
-                    cmd.CommandTimeout = 1200;
-                    cmd.CommandType = System.Data.CommandType.Text;
-                    sqlcon.Open();
+            //var sr = new StudentReg();
+            ////var constr = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            //using (SqlConnection sqlcon = new SqlConnection(connectionString))
+            //{
+            //    using (SqlCommand cmd = new SqlCommand("", sqlcon))
+            //    {
+            //        cmd.CommandTimeout = 1200;
+            //        cmd.CommandType = System.Data.CommandType.Text;
+            //        sqlcon.Open();
 
-                    using (SqlDataReader sdr = cmd.ExecuteReader())
-                    {
-                        pp.States = sdr["Name"].ToString();
-                    }
-                }
-            }
+            //        using (SqlDataReader sdr = cmd.ExecuteReader())
+            //        {
+            //            sr.States = sdr["Name"].ToString();
+            //            sr.LocalGovt = sdr["lgaName"].ToString();
+            //        }
+            //    }
+            //}
 
-            return View(pp);
+            return View();
         }
     }
 }

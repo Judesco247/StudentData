@@ -22,7 +22,7 @@ namespace StudentData.Controllers.Api
         }
 
         // GET : /api/StudentReg/getAllStudents
-        [Route("/getAllStudents")]
+        [Route("getAllStudents")]
         [HttpGet]
         public IActionResult GetAllStudents()
         {
@@ -152,7 +152,8 @@ namespace StudentData.Controllers.Api
         [HttpGet]
         public IActionResult GetEachLGA(int StateId)
         {
-            var LocalGovt = _studentDataContext.LocalGovt.Where(x => x.StateId == StateId).ToList();
+            var LocalGovt = _studentDataContext.LocalGovt
+                .Where(x => x.StateId == StateId).ToList();
             return Ok(LocalGovt);
         }
     }
