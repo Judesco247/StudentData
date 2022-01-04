@@ -40,5 +40,11 @@ namespace StudentData.Controllers
 
             return View();
         }
+
+        public IActionResult StudentInfo()
+        {
+            return View();
+        }
+
     }
 }

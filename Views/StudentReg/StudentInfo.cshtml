@@ -1,0 +1,59 @@
+﻿@model IEnumerable<StudentData.Models.StudentReg>
+@{
+    ViewData["Title"] = "StudentInfo";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>StudentData</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+
+
+</head>
+
+<body>
+    <div class="pagetitle">
+        <h1>Students Information</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item active">All Students</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <div class="container">
+        <div class="col-md-12">
+            <table class="table table-bordered table-responsive table-hover" id="">
+                <tr>
+                    <th>Reg No </th>
+                    <th>Surname </th>
+                    <th>Othernames </th>
+                    <th>State Of Origin</th>
+                    <th>Phone No</th>
+                    <th>Program</th>
+                    <th>Department</th>
+                </tr>
+            @foreach (var student in Model)
+            {
+                <tr>
+                    <td>@student.RegNumber</td>
+                    <td>@student.Surname</td>
+                    <td>@student.OtherNames</td>
+                    <td>@student.States</td>
+                    <td>@student.PhoneNumber</td>
+                    <td>@student.Program</td>
+                    <td>@student.Department</td>
+                </tr>
+            }
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>
