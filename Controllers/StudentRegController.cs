@@ -7,43 +7,29 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static StudentData.Data.DBContext_Class;
 
 namespace StudentData.Controllers
 {
     public class StudentRegController : Controller
     {
-        private readonly string connectionString;
+        readonly StudentDataContext _studentDataContext;
 
-        public StudentRegController(IConfiguration configuration)
+        public StudentRegController(StudentDataContext studentDataContext)
         {
-            connectionString = configuration.GetConnectionString("DefaultConnection");
+            _studentDataContext = studentDataContext;
         }
+
         public IActionResult StudentRegistration()
         {
-            //var sr = new StudentReg();
-            ////var constr = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-            //using (SqlConnection sqlcon = new SqlConnection(connectionString))
-            //{
-            //    using (SqlCommand cmd = new SqlCommand("", sqlcon))
-            //    {
-            //        cmd.CommandTimeout = 1200;
-            //        cmd.CommandType = System.Data.CommandType.Text;
-            //        sqlcon.Open();
-
-            //        using (SqlDataReader sdr = cmd.ExecuteReader())
-            //        {
-            //            sr.States = sdr["Name"].ToString();
-            //            sr.LocalGovt = sdr["lgaName"].ToString();
-            //        }
-            //    }
-            //}
-
             return View();
         }
 
         public IActionResult StudentInfo()
         {
-            return View();
+            IEnumerable<StudentReg> studentRegs = _studentDataContext.StudentReg.ToList();
+
+            return View(studentRegs);
         }
 
     }
