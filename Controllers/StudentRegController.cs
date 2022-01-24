@@ -1,10 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using StudentData.Data;
 using StudentData.Models;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using static StudentData.Data.DBContext_Class;
@@ -14,10 +18,12 @@ namespace StudentData.Controllers
     public class StudentRegController : Controller
     {
         readonly StudentDataContext _studentDataContext;
+        private readonly IHostingEnvironment _hostingEnvironment1;
 
-        public StudentRegController(StudentDataContext studentDataContext)
+        public StudentRegController(StudentDataContext studentDataContext, IHostingEnvironment hostingEnvironment)
         {
             _studentDataContext = studentDataContext;
+            _hostingEnvironment1 = hostingEnvironment;
         }
 
         public IActionResult StudentRegistration()
@@ -25,11 +31,45 @@ namespace StudentData.Controllers
             return View();
         }
 
+
         public IActionResult StudentInfo()
         {
             IEnumerable<StudentReg> studentRegs = _studentDataContext.StudentReg.ToList();
 
             return View(studentRegs);
+        }
+
+
+        public IActionResult PassportImage()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public IActionResult PassportImage(IFormFile file)
+        {
+            string path = Path.Combine(_hostingEnvironment1.WebRootPath, "Passport", file.FileName);
+            Image image = Image.FromStream(file.OpenReadStream(), true, true);
+            int width = image.Width;
+            int height = image.Height;
+            if (width == 400 && height == 400)
+            {
+                var newImage = new Bitmap(image.Width, image.Height);
+
+                using (var a = Graphics.FromImage(newImage))
+                {
+                    a.DrawImage(image, 0, 0, width, height);
+                    newImage.Save(path);
+                }
+
+                ViewBag.Message = "The selected image file has been saved successfully";
+            }
+            else
+            {
+                ViewBag.Message = "Please upload image with size 400x400 only";
+            }
+            return View();
         }
 
     }
