@@ -20,161 +20,156 @@
 <body>
     @*<h3>Student Registration</h3> <br />*@
     <div class="pagetitle">
-      <h1>Student Registration</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item active">New Student</li>
-        </ol>
-      </nav>
+        <h1>Student Registration</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item active">New Student</li>
+            </ol>
+        </nav>
     </div><!-- End Page Title -->
 
-<div class="container">
-    <div class="col-md-12">
-        <form asp-action="StudentReg" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="container">
+        <div class="col-md-12">
+            <script>
+                // alert('ok');
+            </script>
+            <form>
+                <div class="text-danger"></div>
 
-            <div class="row">
-                <div class="col-md-4">
-                    <label class="control-label"><b>Registration Number</b></label>
-                    <input asp-for="RegNumber" class="form-control" />
-                    <span asp-validation-for="RegNumber" class="text-danger"></span>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="control-label"><b>Registration Number</b></label>
+                        <input for="RegNumber" id="regNo" class="form-control" />
+                    </div>
+                    <div class="col-md-4">
+                        <label class="control-label"><b>Surname</b></label>
+                        <input for="Surname" class="form-control" id="sname" />
+                    </div>
+                    <div class="col-md-4">
+                        <label class="control-label"><b>Othernames</b></label>
+                        <input for="OtherNames" class="form-control" id="other" />
+                    </div>
                 </div>
-                <div class="col-md-4">
-                    <label class="control-label"><b>Surname</b></label>
-                    <input asp-for="Surname" class="form-control" />
-                    <span asp-validation-for="Surname" class="text-danger"></span>
-                </div>
-                <div class="col-md-4">
-                    <label class="control-label"><b>Othernames</b></label>
-                    <input asp-for="OtherNames" class="form-control" />
-                    <span asp-validation-for="OtherNames" class="text-danger"></span>
-                </div>
-            </div>
 
-            <br />
+                <br />
 
-            <div class="row">
-                <div class="col-md-6">
-                    <label class="control-label"><b>Adress</b></label>
-                    <input asp-for="Address" class="form-control" />
-                    <span asp-validation-for="Address" class="text-danger"></span>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="control-label"><b>Address</b></label>
+                        <input for="Address" class="form-control" id="add" />
+                    </div>
+                    <div class="col-md-3">
+                        <label class="control-label"><b>State of Origin</b></label>
+                        <select for="State" class="form-control" id="State"></select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="control-label"><b>LGA</b></label>
+                        <select for="LocalGovtArea" class="form-control" id="LGovt"></select>
+                    </div>
                 </div>
-                <div class="col-md-3">
-                    <label class="control-label"><b>State of Origin</b></label>
-                    <select asp-for="States" class="form-control" id="State"></select>
-                </div>
-                <div class="col-md-3">
-                    <label class="control-label"><b>LGA</b></label>
-                    <select asp-for="LocalGovt" class="form-control" id="LGovt"></select>
-                </div>
-            </div>
 
-            <br />
+                <br />
 
-            <div class="row">
-                <div class="col-md-3">
-                    <label class="control-label"><b>Date of Birth</b></label>
-                    <input asp-for="DateOfBirth" class="form-control" id="datepicker1" type="date" placeholder="dd-mm-yyyy" />
-                    <span asp-validation-for="DateOfBirth" class="text-danger"></span>
-                </div>
-                <div class="col-md-3">
-                    <label class="control-label"><b>Phone Number (I)</b></label>
-                    <input asp-for="PhoneNumber" class="form-control" />
-                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-                </div>
-                <div class="col-md-3">
-                    <label class="control-label"><b>Phone Number (II)</b></label>
-                    <input asp-for="Alt_PhoneNumber" class="form-control" />
-                    <span asp-validation-for="Alt_PhoneNumber" class="text-danger"></span>
-                </div>
-                <div class="col-md-3">
-                    <label class="control-label"><b>Admission Date</b></label>
-                    <input asp-for="DateOfAdmission" class="form-control" id="datepicker2" type="date" />
-                    <span asp-validation-for="DateOfAdmission" class="text-danger"></span>
-                </div>
-            </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label class="control-label"><b>Date of Birth</b></label>
+                        <input for="DateOfBirth" class="form-control" id="birthdate" type="date" />
 
-            <br />
+                    </div>
+                    <div class="col-md-3">
+                        <label class="control-label"><b>Phone Number (I)</b></label>
+                        <input for="PhoneNumber" class="form-control" id="phone1" />
+                    </div>
+                    <div class="col-md-3">
+                        <label class="control-label"><b>Phone Number (II)</b></label>
+                        <input for="Alt_PhoneNumber" class="form-control" id="phone2" />
+                    </div>
+                    <div class="col-md-3">
+                        <label class="control-label"><b>Admission Date</b></label>
+                        <input for="DateOfAdmission" class="form-control" id="admdate" type="date" />
+                    </div>
+                </div>
 
-            <div class="row">
-                <div class="col-3">
-                    <label class="control-label"><b>Course Of Study</b></label>
-                    <select asp-for="Course" class="form-control">
-                        <option>Select ...</option>
-                        <option value="Computer">Computer Science</option>
-                        <option value="Business">Business Administrator</option>
-                        <option value="Mechanic">Mechanical Engineer</option>
-                    </select>
-                    <span asp-validation-for="Course" class="text-danger"></span>
-                </div>
-                <div class="col-3">
-                    <label class="control-label"><b>Department</b></label>
-                    <select asp-for="Department" class="form-control">
-                        <option>Select ...</option>
-                    </select>
-                    <span asp-validation-for="Department" class="text-danger"></span>
-                </div>
-                <div class="col-3">
-                    <label class="control-label"><b>Program</b></label>
-                    <select asp-for="Program" class="form-control">
-                        <option>Select ...</option>
-                        <option value="Part-time">Part-Time</option>
-                        <option value="Full-time">Full-Time</option>
-                        <option value="PGD">Post Graduate</option>
-                        <option value="Masters">Masters Degree</option>
-                    </select>
-                    <span asp-validation-for="Program" class="text-danger"></span>
-                </div>
-                <div class="col-3">
-                    <label class="control-label"><b>Religion</b></label>
-                    <select asp-for="Religion" class="form-control">
-                        <option>Select ...</option>
-                        <option value="Christian">Christian</option>
-                        <option value="Muslim">Muslim</option>
-                        <option value="others">Others</option>
-                    </select>
-                    <span asp-validation-for="Religion" class="text-danger"></span>
-                </div>
-            </div>
+                <br />
 
-            <br />
-
-            <div class="row">
-                <div class="col-3">
-                    <label class="control-label"><b>Passport Photograph</b></label> <br />
-                    <input type="file" name="passport" />
+                <div class="row">
+                    <div class="col-3">
+                        <label class="control-label"><b>Course Of Study</b></label>
+                        <select for="Course" class="form-control" id="courses">
+                            <option>Select ...</option>
+                            <option value="Computer">Computer Science</option>
+                            <option value="Business">Business Administrator</option>
+                            <option value="Mechanic">Mechanical Engineer</option>
+                        </select>
+                    </div>
+                    <div class="col-3">
+                        <label class="control-label"><b>Department</b></label>
+                        <select for="Department" class="form-control" id="dept">
+                            <option>Select ...</option>
+                        </select>
+                    </div>
+                    <div class="col-3">
+                        <label class="control-label"><b>Program</b></label>
+                        <select for="Program" class="form-control" id="prog">
+                            <option>Select ...</option>
+                            <option value="Part-time">Part-Time</option>
+                            <option value="Full-time">Full-Time</option>
+                            <option value="PGD">Post Graduate</option>
+                            <option value="Masters">Masters Degree</option>
+                        </select>
+                    </div>
+                    <div class="col-3">
+                        <label class="control-label"><b>Religion</b></label>
+                        <select for="Religion" class="form-control" id="rel">
+                            <option>Select ...</option>
+                            <option value="Christian">Christian</option>
+                            <option value="Muslim">Muslim</option>
+                            <option value="others">Others</option>
+                        </select>
+                    </div>
                 </div>
-                @if (ViewBag.Message != null)
-                {
-                    <script type="text/javascript">
-                        window.onload = function () {
-                            alert("@ViewBag.Message");
-                        };
-                    </script>
-                }
-            </div>
 
-            <br />
+                <br />
 
-            <div class="row">
-                <div class="col-md-1">
-                    <input type="submit" value="Create" class="btn btn-primary" />
+                @*<div class="row">
+                        <div class="col-3">
+                            <label class="control-label"><b>Passport Photograph</b></label> <br />
+                            <input type="file" name="passport" id="photo" />
+                        </div>
+                        @if (ViewBag.Message != null)
+                        {
+                            <script type="text/javascript">
+                            window.onload = function () {
+                                alert("@ViewBag.Message");
+                            };
+                            </script>
+                        }
+                    </div>*@
+
+                <br />
+
+                <div class="row">
+                    <div class="col-md-1">
+                        <button id="addBTN" class="btn btn-primary">Create</button>
+                    </div>
+                    <div class="col-md-1">
+                        <input type="submit" value="Clear" class="btn btn-danger" />
+                    </div>
                 </div>
-                
-                <div class="col-md-1">
-                    <input type="submit" value="Clear" class="btn btn-danger" />
-                </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-</div>
+</body>
+</html>
 
 
 <!-- Core theme JS-->
 <script src="~/lib/jqueryui/jquery-ui.min.js"></script>
-@*<script src="~/js/scripts.js"></script>*@
+<script src="~/js/scripts.js"></script>
 <script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jqueryui/jquery-ui.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script>
     $(document).ready(function () {
             $.ajax({
@@ -187,7 +182,7 @@
                     var s = '<option value="">Select State ...</option>';
 
                     for (var i = 0; i < data.length; i++) {
-                        s += '<option value="' + data[i].name + '">' + data[i].name + '</option>';
+                        s += '<option value="' + data[i].stateId + '">' + data[i].name + '</option>';
                     }
                     $("#State").html(s);
                 }
@@ -197,11 +192,12 @@
     $(document).ready(function () {
         $("#State").change(function () {
             var val = $(this).val();
+            /*alert(val);*/
                 $.ajax({
-                    url: '@Url.Action("GetLGA", "StudentReg")',
+                    url: '@Url.Action("GetEachLGA","StudentReg")',
                     type: 'GET',
                     dataType: 'json',
-                    data: { id: val },
+                    data: { stateId: val },
                     success: function (response) {
                         console.log(response)
 
@@ -211,72 +207,60 @@
                             s += '<option value="' + response[i].lgaName + '">' + response[i].lgaName + '</option>';
                         }
                         $("#LGovt").html(s);
-
-                        //$("#LGovt").val(response.lgaName + "  " + response.lgaName);
-                        //$("#passport").attr('src', 'data:image/jpeg;base64,' + response.Base64string);
-                        //$("#dob").val(response.DOB);
                     },
                     error: function () {
                         console.log('Error in Operation');
                     }
                 });
             });
-        });
+    });
 
 
 
 
 
+        $(document).ready(function () {
+            $('#addBTN').click(function () {
+               //var studentReg = $('#regNo').val();
+               // alert(studentReg);
+                var studentReg = studentReg || {};
+                studentReg.regNumber = $('#regNo').val();
+                //console.log(studentReg.regNumber);
+                studentReg.surname = $('#sname').val();
+                studentReg.otherNames = $('#other').val();
+                /*alert(studentReg.otherNames);*/
+                studentReg.address = $('#add').val();
+                studentReg.State = $('#State').val();
+                studentReg.localGovtArea = $('#LGovt').val();
+                studentReg.dateOfBirth = $('#birthdate').val();
+                studentReg.phoneNumber = $('#phone1').val();
+                studentReg.alt_PhoneNumber = $('#phone2').val();
+                studentReg.dateOfAdmission = $('#admdate').val();
+                studentReg.course = $('#courses').val();
+                studentReg.department = $('#dept').val();
+                studentReg.program = $('#prog').val();
+                studentReg.religion = $('#rel').val();
+                 $.ajax({
 
-    //$(document).ready(function () {
-    //    var StateName = $("#State");
-    //    var LocalGovtName = $("#LGovt");
-    //    LocalGovtName.prop('disabled', true);
+                url: '@Url.Action("AddNewStudent","StudentReg")',
+                type: 'POST',
+                contentType: 'application/json; charset=UTF-8',
+                data: JSON.stringify(studentReg),
+                success: function (data, textStatus, xhr) {
 
-    //    StateName.change(function () {
-    //        if ($(this).val() == "0") {
-    //            LocalGovtName.prop('disabled', true);
-    //            LocalGovtName.val("0");
-    //        }
-    //        else {
-    //            $.ajax({
-    //                url: "/api/eachgetLGA/" + $(this).val(),
-    //                method: "get",
-    //                success: function (data) {
-    //                    console.log(data)
-    //                    LocalGovtName.prop('disabled', false);
-    //                    LocalGovtName.empty();
-    //                    LocalGovtName.append($('<option/>', { value: '0', text: '--Select LGA--' }));
-    //                    $(data).each(function (index, item) {
-    //                        LocalGovtName.append($('<option/>', { value: item.id, text: item.name }));
-    //                    });
-    //                }
-    //            });
-    //        }
-    //    });
-    //});
-
-//$(function () {
-//            //$("#datepicker").datepicker();
-//            //$("#datepicker1").datepicker();
-//            //$("#datepicker2").datepicker();
-//            //$("#datepicker3").datepicker();
-//            //$("#datepicker4").datepicker();
-//            //$("#fedhousing").hide();
-//            //$("#car_loanid").hide();
-//            //$("#welfare_loanid").hide();
-//            //$("#NNNCS_loanid").hide();
-//            //$("#NNMFBL_loanid").hide();
-//            //$("#ppc_loanid").hide();
-//            //$("#AnyOther_loanid").hide();
-//    $("#datepicker")
-//        .datepicker({
-//            dateFormat: "dd-mm-yyyy"
-//        })
+                    alert(data + " Student Successfully Added")
+                    //window.location.reload();
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    alert(xhr.responseText);
+                    //window.location.reload();
+                    console.log('Error in Operation');
+                }
+            })
 
 
-//        });
+            })
+        })
+
 
 </script>
-</body>
-</html>

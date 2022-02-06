@@ -19,9 +19,9 @@ namespace StudentData.Models
         [StringLength(100)]
         public string Address { get; set; }
         [StringLength(20)]
-        public string States { get; set; }
+        public string State { get; set; }
         [StringLength(20)]
-        public string LocalGovt { get; set;  }
+        public string LocalGovtArea { get; set;  }
         [StringLength(15)]
         public string Religion { get; set; }
         public DateTime? DateOfBirth { get; set; }

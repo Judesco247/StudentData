@@ -34,6 +34,9 @@ namespace StudentData.Controllers.Api
         [HttpPost]
         public IActionResult AddNewStudent([FromBody] StudentReg studentReg)
         {
+            var stateid = int.Parse(studentReg.State);
+            var state = _studentDataContext.States.Where(x => x.StateId == stateid).FirstOrDefault();
+            studentReg.State = state.Name;
             _studentDataContext.Add(studentReg);
             _studentDataContext.SaveChanges();
             return Ok();
@@ -44,14 +47,17 @@ namespace StudentData.Controllers.Api
         [HttpPut]
         public IActionResult UpdateStudentInfo(StudentReg studentReg)
         {
+            var stateid = int.Parse(studentReg.State);
+            var state = _studentDataContext.States.Where(x => x.StateId == stateid).FirstOrDefault();
+            studentReg.State = state.Name;
             var StudentInDB = _studentDataContext.StudentReg.Find(studentReg.Id);
 
             StudentInDB.RegNumber = studentReg.RegNumber;
             StudentInDB.Surname = studentReg.Surname;
             StudentInDB.OtherNames = studentReg.OtherNames;
             StudentInDB.Address = studentReg.Address;
-            StudentInDB.States = studentReg.States;
-            StudentInDB.LocalGovt = studentReg.LocalGovt;
+            StudentInDB.State = studentReg.State;
+            StudentInDB.LocalGovtArea = studentReg.LocalGovtArea;
             StudentInDB.Religion = studentReg.Religion;
             StudentInDB.DateOfBirth = studentReg.DateOfBirth;
             StudentInDB.PhoneNumber = studentReg.PhoneNumber;
@@ -147,8 +153,8 @@ namespace StudentData.Controllers.Api
             return Ok(_studentDataContext.LocalGovt.ToList());
         }
 
-        //GET : /api/StudentReg/eachgetLGA
-        [Route("eachgetLGA/{StateId}")]
+        //GET : /api/StudentReg/geteachLGA
+        //[Route("geteachLGA/{stateId}")]
         [HttpGet]
         public IActionResult GetEachLGA(int StateId)
         {
