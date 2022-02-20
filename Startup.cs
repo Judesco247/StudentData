@@ -9,6 +9,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using StudentData.Core.IRepository;
+using StudentData.Core.IServices;
+using StudentData.Core.Repository;
+using StudentData.Core.Services;
 using static StudentData.Data.DBContext_Class;
 
 namespace StudentData
@@ -28,7 +32,12 @@ namespace StudentData
             services.AddDbContext<StudentDataContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllersWithViews();
+
+
+            services.AddScoped<IStudentService, StudentService>();
+            services.AddScoped<IStudentRepository, StudentRepository>();
         }
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

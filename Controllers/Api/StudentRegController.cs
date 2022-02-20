@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using StudentData.Core.IServices;
 using StudentData.Models;
 using System;
 using System.Collections.Generic;
@@ -15,10 +16,12 @@ namespace StudentData.Controllers.Api
     public class StudentRegController : ControllerBase
     {
         readonly StudentDataContext _studentDataContext;
+        private readonly IStudentService _studentService;
 
-        public StudentRegController(StudentDataContext studentDataContext)
+        public StudentRegController(StudentDataContext studentDataContext, IStudentService studentService)
         {
             _studentDataContext = studentDataContext;
+            _studentService = studentService;
         }
 
         // GET : /api/StudentReg/getAllStudents
@@ -34,11 +37,7 @@ namespace StudentData.Controllers.Api
         [HttpPost]
         public IActionResult AddNewStudent([FromBody] StudentReg studentReg)
         {
-            var stateid = int.Parse(studentReg.State);
-            var state = _studentDataContext.States.Where(x => x.StateId == stateid).FirstOrDefault();
-            studentReg.State = state.Name;
-            _studentDataContext.Add(studentReg);
-            _studentDataContext.SaveChanges();
+            _studentService.AddStudent(studentReg);
             return Ok();
         }
 
@@ -47,30 +46,10 @@ namespace StudentData.Controllers.Api
         [HttpPut]
         public IActionResult UpdateStudentInfo(StudentReg studentReg)
         {
-            var stateid = int.Parse(studentReg.State);
-            var state = _studentDataContext.States.Where(x => x.StateId == stateid).FirstOrDefault();
-            studentReg.State = state.Name;
-            var StudentInDB = _studentDataContext.StudentReg.Find(studentReg.Id);
-
-            StudentInDB.RegNumber = studentReg.RegNumber;
-            StudentInDB.Surname = studentReg.Surname;
-            StudentInDB.OtherNames = studentReg.OtherNames;
-            StudentInDB.Address = studentReg.Address;
-            StudentInDB.State = studentReg.State;
-            StudentInDB.LocalGovtArea = studentReg.LocalGovtArea;
-            StudentInDB.Religion = studentReg.Religion;
-            StudentInDB.DateOfBirth = studentReg.DateOfBirth;
-            StudentInDB.PhoneNumber = studentReg.PhoneNumber;
-            StudentInDB.Alt_PhoneNumber = studentReg.Alt_PhoneNumber;
-            StudentInDB.Program = studentReg.Program;
-            StudentInDB.Department = studentReg.Department;
-            StudentInDB.Course = studentReg.Course;
-            StudentInDB.DateOfAdmission = studentReg.DateOfAdmission;
-
-            _studentDataContext.StudentReg.Update(StudentInDB);
-            _studentDataContext.SaveChanges();
+            
+            _studentService.StudentUpdate(studentReg);
             return Ok();
-        }
+            }
 
         //api/StudentReg/Removestudent/id
         [Route("Removestudent/{id:int}")]

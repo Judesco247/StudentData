@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using StudentData.Core.IServices;
 using StudentData.Data;
 using StudentData.Models;
 using System;
@@ -20,6 +21,7 @@ namespace StudentData.Controllers
     {
         readonly StudentDataContext _studentDataContext;
         private readonly IHostingEnvironment _hostingEnvironment1;
+        private readonly IStudentService _studentService;
 
         public StudentRegController(StudentDataContext studentDataContext, IHostingEnvironment hostingEnvironment)
         {
@@ -34,24 +36,25 @@ namespace StudentData.Controllers
 
         public IActionResult EditStudents(int id)
         {
-            var stu = _studentDataContext.StudentReg.FirstOrDefault(x => x.Id == id);
-            StudentReg sr = new StudentReg();
-            sr.RegNumber = stu.RegNumber;
-            sr.Surname = stu.Surname;
-            sr.OtherNames = stu.OtherNames;
-            sr.Address = stu.Address;
-            sr.State = stu.State;
-            sr.LocalGovtArea = stu.LocalGovtArea;
-            sr.DateOfBirth = (DateTime)stu.DateOfBirth;
-            sr.PhoneNumber = stu.PhoneNumber;
-            sr.Alt_PhoneNumber = stu.Alt_PhoneNumber;
-            sr.DateOfAdmission = (DateTime)stu.DateOfAdmission;
-            sr.Course = stu.Course;
-            sr.Department = stu.Department;
-            sr.Program = stu.Program;
-            sr.Religion = stu.Religion;
+            //var stu = _studentDataContext.StudentReg.FirstOrDefault(x => x.Id == id);
+            //StudentReg sr = new StudentReg();
+            //sr.RegNumber = stu.RegNumber;
+            //sr.Surname = stu.Surname;
+            //sr.OtherNames = stu.OtherNames;
+            //sr.Address = stu.Address;
+            //sr.State = stu.State;
+            //sr.LocalGovtArea = stu.LocalGovtArea;
+            //sr.DateOfBirth = (DateTime)stu.DateOfBirth;
+            //sr.PhoneNumber = stu.PhoneNumber;
+            //sr.Alt_PhoneNumber = stu.Alt_PhoneNumber;
+            //sr.DateOfAdmission = (DateTime)stu.DateOfAdmission;
+            //sr.Course = stu.Course;
+            //sr.Department = stu.Department;
+            //sr.Program = stu.Program;
+            //sr.Religion = stu.Religion;
+             _studentService.StudentEdit(id);
 
-            return View(sr);
+            return View();
         }
 
         //[HttpGet]
